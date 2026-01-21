@@ -271,7 +271,7 @@ if (state.mode === 0) {
 } else if (state.mode === 2) {
     // 単語➝読み → 意味表示
     if (!hasReading[state.lang]) {
-        textQ.textContent = "読みがありません";
+        textQ.textContent = "意味がありません";
         return;
     }
     textA.textContent = word[1] || "";
@@ -342,13 +342,13 @@ function showList() {
         return;
     }
 
-    textQ.textContent = langs[state.lang] + " 単語一覧";
+    textQ.textContent = langs[state.lang] + " 文字一覧";
 
     let html = "";
     dic.forEach(row => {
         const [word, meaning, reading] = row.split(",");
         html += "・" + word;
-        if (reading) html += "【" + reading + "】";
+        if (reading) html += "" + reading + "";
         html += "： " + meaning + "<br>";
     });
 

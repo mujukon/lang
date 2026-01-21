@@ -372,6 +372,9 @@ function handleClick(n) {
             if (state.mode === 2 && !hasReading[state.lang]) state.mode = 0;
             
             resetUI(); 
+        }else if (n === 4) { // その他（ページ送り）
+            state.page = (state.page + 1) % Math.ceil(langs.length / 3);
+            updateLangButtons();
         }
         return;
     }

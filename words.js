@@ -1,4 +1,4 @@
-var words words=`*韓国語		
+var words =`*韓国語		
 나	私	na
 우리	私たち	uɾi
 너	あなた	nɔ

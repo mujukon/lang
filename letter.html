@@ -148,17 +148,7 @@ blocks.forEach(block => {
     });
     dictionaries.push(dict);
 
-    /* ===== 読み判定（強化版） ===== */
-
-    const total = dict.length;
-
-    const noReadingCount = dict.filter(row => {
-        const reading = row.split(",")[2] ?? "";
-        return reading.trim() === ""; // 空白・タブ全部「無い」
-    }).length;
-
-    // 8割以上が「読み無し」なら、その言語は読み無し扱い
-    hasReading.push(noReadingCount / total < 0.8);
+    
 });
 
 
@@ -167,7 +157,6 @@ blocks.forEach(block => {
 const MODES = [
     { label: "Q文字➝A読み", q: 0, a: 1 },
     { label: "Q読み➝A文字", q: 1, a: 0 },
-    { label: "(Q文字➝A意味)", q: 0, a: 2 },
     { label: "一覧を見る", list: true } // ← 追加
 ];
 

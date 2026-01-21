@@ -254,20 +254,7 @@ function ask() {
     textQ.textContent = word[mode.q];
 
 // 補助表示
-if (state.mode === 0) {
-    // 単語➝意味 → 読み表示
-    textA.textContent = word[2] || "";
-} else if (state.mode === 2) {
-    // 単語➝読み → 意味表示
-    if (!hasReading[state.lang]) {
-        textQ.textContent = "意味がありません";
-        return;
-    }
-    textA.textContent = word[1] || "";
-} else {
-    // 意味➝単語→読み表示
-    textA.textContent = word[2];
-}
+
 
 
     // 正解位置
@@ -396,7 +383,6 @@ function handleClick(n) {
             updateLangButtons();
         } else if (n === 5) { // モード変更
             state.mode = (state.mode + 1) % MODES.length;
-            if (state.mode === 2 && !hasReading[state.lang]) state.mode = 0;
             updateModeText();
         } else if (n >= 1 && n <= 3) { // 言語選択
             const index = state.page * 3 + (n - 1);

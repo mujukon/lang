@@ -375,6 +375,11 @@ function handleClick(n) {
         }else if (n === 4) { // その他（ページ送り）
             state.page = (state.page + 1) % Math.ceil(langs.length / 3);
             updateLangButtons();
+        }else if (n >= 1 && n <= 3) { // 言語選択
+            const index = state.page * 3 + (n - 1);
+            if (!langs[index]) return;
+            state.lang = index;
+            showList();
         }
         return;
     }

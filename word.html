@@ -1,0 +1,471 @@
+
+<script src="words.js"></script>
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>単語帳</title>
+</head>
+
+<body>
+<div id="topBar">
+  <button class="menu" id="0">戻る</button>
+</div>
+
+<div class="container">
+    <div class="text">
+        <p id="a">Q単語➝A意味</p>
+        <p id="b" class="sub"></p>
+    </div>
+
+    <div class="button-container" id="quizButtons">
+        <button id="1">ねこ語</button>
+        <button id="2">いぬ語</button>
+        <button id="3">うさぎ語</button>
+        <button id="4">➝</button>
+    </div>
+
+    <div class="next">
+        <button id="5">モード変更</button>
+    </div>
+</div>
+</body>
+
+<style>
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+body {
+    display: flex;
+  align-items: center; 
+  flex-direction: column;
+}
+  
+#topBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  z-index: 10;
+}
+
+.container {
+  position: relative;  
+  margin-top: 100px; /* topbarより少し余裕 */
+  width: 90vw;
+  max-width: 900px;
+  text-align: center;
+}
+
+.text {
+    font-size: 48px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+.sub {
+    font-size: 0.7em;   /* 問題文より少し小さく */
+    opacity: 0.75;     /* 主張しすぎない */
+    margin-top: 8px;
+}
+
+
+.button-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+button {
+    height: 72px;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.menu {
+    position: absolute;
+    left: 10px;
+    font-size: 22px;
+}
+
+#b {
+    max-height: 60vh;
+    overflow-y: auto;
+    font-size: 0.4em;
+    line-height: 1.3;
+    text-align: left;
+}
+
+.next {
+    position: absolute;
+    right: 10px;
+    bottom: -80px;
+}
+
+.next button {
+    width: 200px;
+    height: 48px;
+    font-size: 22px;
+}
+</style>
+<script>/* ===== words.js 読み込み後の前処理 ===== */
+
+words = words.replace(/\n/g, "|").replace(/\t/g, ",");
+const blocks = words.split("*");
+let viewMode = "quiz"; // "quiz" | "list"
+let mistake = -1;
+let quiz = 0;
+const langs = [];
+const dictionaries = [];
+const hasReading = [];
+// DOM取得に追加
+const quizButtons = document.getElementById("quizButtons");
+    
+blocks.forEach(block => {
+    const rows = block.split("|").filter(r => r !== "");
+    if (rows.length === 0) return;
+
+    const first = rows[0].split(",");
+    langs.push(first[0]); // 言語名
+
+    const dict = rows.slice(1).map(row => {
+        const cols = row.split(",");
+        return [
+            cols[0] ?? "",
+            cols[1] ?? "",
+            cols[2] ?? ""   // 無ければ空文字
+        ].join(",");
+    });
+    dictionaries.push(dict);
+
+    /* ===== 読み判定（強化版） ===== */
+
+    const total = dict.length;
+
+    const noReadingCount = dict.filter(row => {
+        const reading = row.split(",")[2] ?? "";
+        return reading.trim() === ""; // 空白・タブ全部「無い」
+    }).length;
+
+    // 8割以上が「読み無し」なら、その言語は読み無し扱い
+    hasReading.push(noReadingCount / total < 0.8);
+});
+
+
+/* ===== モード定義 ===== */
+
+const MODES = [
+    { label: "Q単語➝A意味", q: 0, a: 1 },
+    { label: "Q意味➝A単語", q: 1, a: 0 },
+    { label: "Q単語➝A読み", q: 0, a: 2 },
+    { label: "一覧を見る", list: true } // ← 追加
+];
+
+
+/* ===== DOM ===== */
+
+const btn = {
+    back: document.getElementById("0"),
+    a: document.getElementById("1"),
+    b: document.getElementById("2"),
+    c: document.getElementById("3"),
+    d: document.getElementById("4"),
+    next: document.getElementById("5")
+};
+
+const textQ = document.getElementById("a");
+const textA = document.getElementById("b");
+
+/* ===== 状態 ===== */
+
+const state = {
+    lang: 0,
+    page: 0,
+    mode: 0,
+    phase: 0, // 0:言語選択 -1:出題中 -2:結果表示
+    correct: 0,
+    current: null
+};
+
+/* ===== 共通UI ===== */
+
+function clearColors() {
+    btn.a.style.backgroundColor = "";
+    btn.b.style.backgroundColor = "";
+    btn.c.style.backgroundColor = "";
+    btn.d.style.backgroundColor = "";
+}
+
+function updateModeText() {
+    textQ.textContent = MODES[state.mode].label;
+    textA.textContent = "";
+}
+
+function updateLangButtons() {
+    const base = state.page * 3;
+    btn.a.textContent = langs[base] ?? "";
+    btn.b.textContent = langs[base + 1] ?? "";
+    btn.c.textContent = langs[base + 2] ?? "";
+    btn.d.textContent = "その他";
+}
+
+function resetUI() {
+    clearColors();
+   
+    document.querySelector(".button-container").style.display = "";
+    document.querySelector(".next").style.display = "";
+
+    state.phase = 0;
+    updateLangButtons();
+    updateModeText();
+    btn.next.textContent = "モード変更";
+}
+
+
+/* ===== 出題 ===== */
+function randomWord() {
+    const dic = dictionaries[state.lang];
+    if (!dic || dic.length === 0) return ["", "", ""];
+
+    // 出題するインデックスを決定
+    if (mistake >= 0 && mistake < dic.length) {
+        quiz = mistake;
+    } else {
+        quiz = Math.floor(Math.random() * dic.length);
+    }
+
+    return dic[quiz].split(",");
+}
+
+
+function ask() {
+    clearColors();
+    state.correct = 0;
+    const dic = dictionaries[state.lang];
+    
+    if (!dic || dic.length === 0) {
+        textQ.textContent = "単語がありません";
+        return;
+    }
+
+    const mode = MODES[state.mode];
+    const word = randomWord(); // ここで問題決定（quizが確定）
+    state.current = word;
+    
+    textQ.textContent = word[mode.q];
+
+// 補助表示
+if (state.mode === 0) {
+    // 単語➝意味 → 読み表示
+    textA.textContent = word[2] || "";
+} else if (state.mode === 2) {
+    // 単語➝読み → 意味表示
+    if (!hasReading[state.lang]) {
+        textQ.textContent = "読みがありません";
+        return;
+    }
+    textA.textContent = word[1] || "";
+} else {
+    // 意味➝単語→読み表示
+    textA.textContent = word[2];
+}
+
+
+    // 正解位置
+    state.correct = Math.floor(Math.random() * 4) + 1;
+    const answers = Array(4).fill("");
+
+    answers[state.correct - 1] = word[mode.a] || "";
+
+    for (let i = 0; i < 4; i++) {
+        if (answers[i] === "") {
+            let w;
+            let retry = 0;
+            do {
+                // randomWordを使わず、直接ランダムに1つ選ぶ
+                const randomIdx = Math.floor(Math.random() * dic.length);
+                w = dic[randomIdx].split(",");
+                retry++;
+            } while (
+                (w[mode.a] === word[mode.a]) && // 正解と同じ意味ならやり直し
+                retry < 100 &&                 // 無限ループ防止
+                dic.length > 1                 // 単語が1つしかないなら諦める
+            );
+            answers[i] = w[mode.a] || "";
+        }
+    }
+
+    btn.a.textContent = answers[0];
+    btn.b.textContent = answers[1];
+    btn.c.textContent = answers[2];
+    btn.d.textContent = answers[3];
+
+    state.phase = -1;
+}
+
+/* ===== 判定 ===== */
+
+function answer(n) {
+    if (n === state.correct) {
+        mistake = -1;
+        showAnswer();
+    } else {
+        btn[["a","b","c","d"][n - 1]].style.backgroundColor = "#f88";
+        mistake = quiz;
+        showAnswer();
+    }
+}
+
+function showAnswer() {
+    btn[["a","b","c","d"][state.correct - 1]].style.backgroundColor = "#8f8";
+    btn.next.textContent = "次へ";
+    state.phase = -2;
+}
+
+function showList() {
+    clearColors();
+
+    const dic = dictionaries[state.lang];
+    if (!dic || dic.length === 0) {
+        textQ.textContent = "単語がありません";
+        textA.textContent = "";
+        return;
+    }
+
+    textQ.textContent = langs[state.lang] + " 単語一覧";
+
+    let html = "";
+    dic.forEach(row => {
+        const [word, meaning, reading] = row.split(",");
+        html += "・" + word;
+        if (reading) html += "【" + reading + "】";
+        html += "： " + meaning + "<br>";
+    });
+
+    textA.innerHTML = html;
+
+    state.phase = 99;
+    btn.next.textContent = "モード変更";
+}
+
+
+
+/* ===== クリック処理 ===== */
+
+function handleClick(n) {
+    // 0: 戻るボタン
+    if (n === 0) {
+        resetUI();
+        return;
+    }
+
+    /* 1. 出題中（解答待ち） */
+    if (state.phase === -1) {
+        if (n >= 1 && n <= 4) {
+            answer(n);
+        } else if (n === 5) {
+            quiz=mistake;
+            showAnswer(); // パスして正解表示
+        }
+        return;
+    }
+
+    /* 2. 正誤表示中（「次へ」ボタン待ち） */
+    if (state.phase === -2) {
+        if (n === 5) {
+            ask(); // 次の問題へ
+        }
+        return;
+    }
+
+    /* 3. 一覧表示中 */
+    if (state.phase === 99) {
+        if (n === 5) {
+            // モードを切り替えて初期画面に戻る
+            state.mode = (state.mode + 1) % MODES.length;
+            if (state.mode === 2 && !hasReading[state.lang]) state.mode = 0;
+            
+            resetUI(); 
+        }
+        return;
+    }
+
+    /* 4. 言語選択中（phase === 0） */
+    if (state.phase === 0) {
+        if (n === 4) { // その他（ページ送り）
+            state.page = (state.page + 1) % Math.ceil(langs.length / 3);
+            updateLangButtons();
+        } else if (n === 5) { // モード変更
+            state.mode = (state.mode + 1) % MODES.length;
+            if (state.mode === 2 && !hasReading[state.lang]) state.mode = 0;
+            updateModeText();
+        } else if (n >= 1 && n <= 3) { // 言語選択
+            const index = state.page * 3 + (n - 1);
+            if (!langs[index]) return;
+            state.lang = index;
+
+            if (MODES[state.mode].list) {
+                showList();
+            } else {
+                ask();
+            }
+        }
+        return;
+    }
+}
+
+
+/* ===== イベント ===== */
+
+btn.back.onclick = () => handleClick(0);
+btn.a.onclick = () => handleClick(1);
+btn.b.onclick = () => handleClick(2);
+btn.c.onclick = () => handleClick(3);
+btn.d.onclick = () => handleClick(4);
+btn.next.onclick = () => handleClick(5);
+
+/* 初期化 */
+resetUI();
+
+</script>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

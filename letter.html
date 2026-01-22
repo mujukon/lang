@@ -421,6 +421,7 @@ function handleClick(n) {
             if (MODES[state.mode].list) {
                 showList();
             } else {
+                btn.next.textContent = "次へ";
                 ask();
             }
         }

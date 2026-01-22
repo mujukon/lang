@@ -117,6 +117,16 @@ button {
     height: 48px;
     font-size: 22px;
 }
+
+@font-face {
+    font-family: "KhmerOSMuol";
+    src: url("./fonts/KhmerOSMuol.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+.khmer {
+    font-family: "KhmerOSMuol", "Noto Serif Khmer", serif;
+}
 </style>
 <script>/* ===== words.js 読み込み後の前処理 ===== */
 
@@ -208,6 +218,16 @@ function updateLangButtons() {
     btn.d.textContent = "その他";
 }
 
+function updateFontByLang() {
+    textQ.classList.remove("khmer");
+    textA.classList.remove("khmer");
+
+    if (langs[state.lang] === "クメール文字(ムール体)") {
+        textQ.classList.add("khmer");
+        textA.classList.add("khmer");
+    }
+}
+  
 function resetUI() {
     clearColors();
    
@@ -218,6 +238,7 @@ function resetUI() {
     updateLangButtons();
     updateModeText();
     btn.next.textContent = "モード変更";
+    updateFontByLang();
 }
 
 
@@ -396,7 +417,7 @@ function handleClick(n) {
             const index = state.page * 3 + (n - 1);
             if (!langs[index]) return;
             state.lang = index;
-
+            updateFontByLang();
             if (MODES[state.mode].list) {
                 showList();
             } else {

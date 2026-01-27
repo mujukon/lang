@@ -318,7 +318,8 @@ document.getElementById("backLangBtn").onclick = () => {
 };
 function selectLanguage(idx) {
   state.lang = idx;
-  index = 0;
+  const sentences = sentencesByLang[state.lang]
+  index = Math.floor(Math.random() * sentences.length);
   buildWordPool();
   loadQuestion();
 
@@ -335,6 +336,7 @@ updateLangButtons();
 
 
 </script>
+
 
 
 

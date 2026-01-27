@@ -148,28 +148,17 @@ raʕtʼis epʰɾam spɛklɑːo	私は 目下 アルバイトを している 大
 bɤɣlø eːlŋ̊ʷam baɣla emjaːt eŋ̊ʷam mɪza eɲɟaː	私は レコード屋で 昔 懐かしい レコードを 買って 昔の 曲を 楽しんでいる
 si tim pata ɢʷelɣŋaː	その 人の 仕事を 評価する のは 難しい
 ecaop adɨmgjəː	私は 身長が 小さい が 大きな 夢を 持っている
-*ŧaq語
-łe cof eproäçeqá	昨日の 会議では 大切な 問題を 話し合った
-tăs'fem ejăilam	駅の 案内所で 道を 案内してもらった
-edătiářuŧa elăf'copusa	私は 不要な データを 削除して コンピューターの 容量を 確保した
-kaaldăȟ	彼は 本来 優しい 人である
-eȟom'ȟekus đepadič	コンサートの チケットを 手に 入れた ので 客席の 良い 場所を 確保しなければ ならない
-sozm đaapčäđo	夏休みは あと 5日 しか 残っていない
-äpidäftároǧ raär'äfel	実用性の 高い 新しい 製品が 出ると 便利に なる ことが 多い
-mim šät đăvep	母は シャツに アイロンを かける
-gomä gaäriniz	その 大会には 多くの 団体が 参加して 競い合う
-ňăm'ňemáx ňimso	小数点は 整数と 小数の 間に ある
-fe epacełaq	風船は 空中を 優雅に 舞っていた
-bakăł bonăǧ ezi'bank'beňuxad	カウボーイは 銃撃戦で 相手の ピストルの 弾丸を うまく 避けた
-hop emăex	赤ちゃんは 病院で 産まれた
-deasmej'ăti äzămiŧa reał'oatođa a'iđam	恥ずかしい 過去を 知っている やつらの 記憶を 消させて 迷惑を かけて ごめん と 言っている 誰か 助けて
-iarňu 'iarsi dă ibăera raej'iejeŧa e'upam	興味が ない こと 本気で ない ものは 全部 後回しで 知っている ことは 知らない ふりを する 私は 終わっている
-nuxi äloetok 'ežu änoxus'iaf óxăer, aAlis qă e'ig	そこで アリスは 頭の なかで ひなぎくの くさりを 作ったら 楽しい であろう が 起きあがって ひなぎくを 摘む のも 面倒である ので どうしようか と 考えていた
-paku ifakoi isiläv, aAlis e'ig	絵や 会話の ない 本など 何の 役にも 立たない と アリスは 思った
-ho do naŧesi selesän kă paku ifako	一 二回は おねえさんの 読んでいる 本を のぞいてみた が そこには 絵も 会話も ない
-Alis voáf enăŧásuž ye'ero e'ubalip	アリスは 川辺で おねえさんの よこに 座って 何も する ことが ない ので とても 退屈しはじめていた
-yéłăxăqařalumasé	あなたたちは くっついた とても 黄色い バターの 代替物を 少しも 好きに なる ことが できなかった
-beobi calämu dugär soásk ähok'gebäciŧ	世界に 不満を 持っている 2匹の 海老と 沢山の 戦士たちが 斜め 後ろの 店で いくつかの ヤスリ 歯磨きの 端っこを 壊している であろう
+*ヒューシェア初級
+Aks zi Iwan	私は ユワン です
+Aks zi ain beit	私は 人 です
+Aks eure	私は 教える
+Aks na fit	私は 食べない
+Aks na eure	私は 教えない
+Ce cek Maria	あなたは マリア です
+Mai irwef fist Miscal	私の 名前は ミシャル です
+Ce eurek	あなたは 教える
+Ce na eurek	あなたは 教えない
+Ce na cek Miscal	あなたは ミシャル ではありません
 *イスクイル3
 Uiphawâtļûxe’ň?	それは 象徴的な 大きな 木立 なのでしょうか?
 hremsoqaiţsurkoi	人間の 多様な 属性から 得られる 価値によって
@@ -183,4 +172,5 @@ Ki attàwîl	あなたに 挨拶を
 Attál	こんにちは
 Attàwîl	こんにちは
 Attàlûk	さよなら
+
 Ükhu ettál	歓迎します`

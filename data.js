@@ -159,6 +159,22 @@ Mai irwef fist Miscal	私の 名前は ミシャル です
 Ce eurek	あなたは 教える
 Ce na eurek	あなたは 教えない
 Ce na cek Miscal	あなたは ミシャル ではありません
+*ジェネレス語
+Iol stori es nomal rumor	彼の 話は 単なる 噂 でした
+Me ielook skel everidei	私は 毎日 空を 観察 している
+Conpan mūv we new place nexmons	会社が 来月 新しい 場所に 移転 する。
+Me ju mék new friend opor	私は 新しい 友達を 作る 機会が ほしい です。
+Nīche measer meas aguärōd yūzamount	この メーターは 水道の 使用量を 測ります。
+Eldei topic es wedā	今日の 話題は 天気 です。
+Iol brāk lomans so pein hāt so iol eat agules-snack we friend	彼女は 初めての 失恋で 心が 痛くて 友達 と 一緒に アイスクリームを 食べた。
+Mj.Yamada swātze car me	山田さんは 車で 私を 轢いた。
+Sän apear est skai ien moning	朝に なると 太陽が 東の空に 現れる。
+Swātze car me getaron	親友を 車で 轢く。
+Nīche fotas es ese méked wey nilon	この 靴下は ナイロンで 作られて います。
+Me eat appl if your eat orensta	もし あなたが オレンジを 食べる なら 私は りんごを 食べる。
+Mez fait elsenoin	私たちは 病気と 戦います。
+Me xonsv go we stēsyon de me hav boze maleta	私は 重い スーツケースを 持って 駅まで 歩くのが とても 大変だった。
+Waz is your colfēno go we Tokyo?	なぜ あなたは 東京に 行く のですか？
 *イスクイル3
 Uiphawâtļûxe’ň?	それは 象徴的な 大きな 木立 なのでしょうか?
 hremsoqaiţsurkoi	人間の 多様な 属性から 得られる 価値によって
@@ -174,3 +190,4 @@ Attàwîl	こんにちは
 Attàlûk	さよなら
 
 Ükhu ettál	歓迎します`
+

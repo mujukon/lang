@@ -320,6 +320,7 @@ document.getElementById("backLangBtn").onclick = () => {
 };
 function selectLanguage(idx) {
   state.lang = idx;
+  phase = "quiz";
   const sentences = sentencesByLang[state.lang]
   index = Math.floor(Math.random() * sentences.length);
   buildWordPool();
@@ -331,13 +332,14 @@ function selectLanguage(idx) {
   // 戻るボタン表示
   document.getElementById("backLangBtn").style.display = "inline";
 
-  phase = "quiz";
+  
 }
 
 updateLangButtons();
 
 
 </script>
+
 
 
 

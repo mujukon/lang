@@ -148,6 +148,7 @@ function buildWordPool() {
 
 
 function loadQuestion() {
+ if (phase == "quiz"){
   const sentences = sentencesByLang[state.lang];
 
   currentWords = [];
@@ -209,6 +210,7 @@ function loadQuestion() {
 
     area.appendChild(btn);
   });
+ }
 }
 
 
@@ -336,6 +338,7 @@ updateLangButtons();
 
 
 </script>
+
 
 
 

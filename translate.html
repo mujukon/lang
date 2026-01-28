@@ -69,7 +69,6 @@ button {
 
 <div id="langSelect">
   <div id="langButtons"></div>
-  <button id="langNext">➝</button>
 </div>
 
 <button id="backBtn">← 単語削除</button>
@@ -298,10 +297,6 @@ function updateLangButtons() {
   }
 }
 
-document.getElementById("langNext").onclick = () => {
-  langPage = (langPage + 1) % Math.ceil(langs.length / 3);
-  updateLangButtons();
-};
 
 document.getElementById("backLangBtn").onclick = () => {
   phase = "lang";
@@ -339,6 +334,7 @@ updateLangButtons();
 
 
 </script>
+
 
 
 

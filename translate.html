@@ -41,6 +41,7 @@ button {
   z-index: 10;
 }
 .correct { color: green; font-size: 50px; }
+#progress { color: green; font-size: 50px; }
 .wrong { color: red; font-size: 50px; }
 .locked { opacity: 0.4; }
 </style>
@@ -49,10 +50,7 @@ button {
 
 <h2>翻訳演習</h2>
 
-<select id="modeSelect">
-  <option value="jp2lang">日本語 → 外国語</option>
-  <option value="lang2jp">外国語 → 日本語</option>
-</select>
+<div id=""><h2 id="progress"></h2></div>
 
 <div id="center">
   <div><img id="img" src="pic/1.gif"></div>
@@ -117,7 +115,7 @@ let poolJP = [], poolLang = [];
 let currentWords = [], buttons = [];
 let correctAnswers = [];
 let questionQueue = []; // 未正解問題キュー
-
+let total = 0;//そのコースの問題数
 /* =========================
    進捗（localStorage）
 ========================= */
@@ -168,6 +166,7 @@ function buildWordPool() {
 function startCourse() {
   const sentences = coursesByLang[state.lang][state.course].sentences;
   questionQueue = [...sentences].sort(() => Math.random() - 0.5);
+  total = questionQueue.length;
   loadQuestion();
 }
 
@@ -180,7 +179,7 @@ function loadQuestion() {
     finishCourse();
     return;
   }
-
+  progress();
   const line = questionQueue[0];
   const [lang, jpRaw] = line.split("\t");
   const jps = jpRaw.split("/");
@@ -201,7 +200,7 @@ function loadQuestion() {
   correctAnswers = answers;
   currentWords = [];
   buttons = [];
-
+  document.getElementById("progress").style.display = "inline";
   document.getElementById("result").textContent = "";
   document.getElementById("answerBox").textContent = "";
   document.getElementById("wordButtons").innerHTML = "";
@@ -266,7 +265,7 @@ document.getElementById("checkBtn").onclick = () => {
   const ok = correctAnswers.includes(userAnswer);
 
   const result = document.getElementById("result");
-
+  
   if (ok) {
     result.textContent = "✅ 正解";
     result.className = "correct";
@@ -274,13 +273,13 @@ document.getElementById("checkBtn").onclick = () => {
     // 正解 → キューから削除
     questionQueue.shift();
   } else {
-    result.textContent = "❌ 不正解";
+    result.textContent = "❌ 不正解\n正解: " + correctAnswers.join(" / ");
     result.className = "wrong";
 
     // 不正解 → 後ろに回す
     questionQueue.push(questionQueue.shift());
   }
-
+  progress();
   document.getElementById("checkBtn").style.display = "none";
   document.getElementById("nextBtn").style.display = "inline";
 };
@@ -369,10 +368,23 @@ function selectCourse(idx) {
 document.getElementById("backLangBtn").onclick = () => {
   document.getElementById("courseSelect").style.display = "none";
   document.getElementById("langSelect").style.display = "block";
-  document.getElementById("backLangBtn").style.display = "none";
+ document.getElementById("progress").style.display = "none"; document.getElementById("backLangBtn").style.display = "none";
   document.getElementById("question").textContent = "";
   document.getElementById("wordButtons").innerHTML = "";
 };
+
+function progress(){
+ var txt ="";
+ var q = questionQueue.length;
+ for (let i=0;i<9;i++){
+  if(q/total>i*10){
+   txt = txt+"●"
+  }else{
+   txt=txt+"〇"  
+  }
+ }
+  txt=txt+Math.floor(q/total*100)+"%"
+}
 
 /* =========================
    初期化

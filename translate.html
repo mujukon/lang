@@ -11,16 +11,8 @@ body{
   margin: 0;
   padding: 0;
 }
-#question {
-  font-size: 50px;
-  margin: 5px;
-}
-#img {
-position: relative;
-  z-index: -1;
-  transform: scale(2);
-  margin: 5px;
-}
+#question { font-size: 50px; margin: 5px; }
+#img { position: relative; z-index: -1; transform: scale(2); margin: 5px; }
 button {
   margin: 15px;
   font-size: 60px;
@@ -29,10 +21,6 @@ button {
   border-radius: 20px;
   box-shadow: 2px 1px 2px gray
 }
-#wordButtons{
-  
-  font-size: 60px;
-}
 #answerBox {
   min-height: 100px;
   border: 1px solid #aaa;
@@ -40,16 +28,11 @@ button {
   margin: 30px 5px 5px 20px;
   font-size: 50px;
 }
-#modeSelect {
-  font-size: 50px;
-   z-index: 10;
-}
 #bottomBar {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 0px;
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -57,50 +40,31 @@ button {
   border-top: 1px solid #ccc;
   z-index: 10;
 }
-#center {  
-  top: 50%;
-  width: 100%;
-  text-align: center
-}
-#bottomBar button {
-  font-size: 50px;
-  padding: 30px 16px;
-}
-
-.correct { 
-  color: green; 
-         font-size: 50px;
-}
-.wrong { 
-  color: red; 
-       font-size: 50px;}
+.correct { color: green; font-size: 50px; }
+.wrong { color: red; font-size: 50px; }
+.locked { opacity: 0.4; }
 </style>
 </head>
 <body>
 
 <h2>翻訳演習</h2>
-<div id="topbar">
+
 <select id="modeSelect">
   <option value="jp2lang">日本語 → 外国語</option>
   <option value="lang2jp">外国語 → 日本語</option>
 </select>
 
-</div>
-
 <div id="center">
-<div id="imgbox"><img id="img" src="pic/1.gif"></div>
-<div id="question"></div>
-<div id="result"></div>
+  <div><img id="img" src="pic/1.gif"></div>
+  <div id="question"></div>
+  <div id="result"></div>
   <div id="answerBox"></div>
   <div id="wordButtons"></div>
-  <div id="langSelect">
-    <div id="langButtons"></div>
-  </div>
-  <div id="courseSelect" style="display:none;">
-  <div id="courseButtons"></div>
-</div>
 
-<button id="backBtn" style="display:none;">← 単語削除</button>
+  <div id="langSelect"><div id="langButtons"></div></div>
+  <div id="courseSelect" style="display:none;"><div id="courseButtons"></div></div>
+
+  <button id="backBtn" style="display:none;">← 単語削除</button>
 </div>
 
 <div id="bottomBar">
@@ -109,30 +73,14 @@ button {
   <button id="nextBtn" style="display:none;">次へ</button>
 </div>
 
-
-
-
 <script src="data.js"></script>
-
-
-</body>
-</html>
 <script>
-  let index = 0;
-let currentWords = [];
-let correctAnswers = [];
-let poolJP = [];
-let poolLang = [];
-let buttons = [];
-let mistake = -1;
-let phase = "lang"; 
-// "lang" → 言語選択
-// "course" → コース選択
-// "quiz" → クイズ
+/* =========================
+   データ解析（言語→コース→文）
+========================= */
 
 const langs = [];
 const coursesByLang = [];
-
 let currentLang = -1;
 let currentCourse = -1;
 
@@ -140,47 +88,66 @@ sentenceText.split("\n").forEach(line => {
   line = line.trim();
   if (!line) return;
 
-  // 言語
   if (line.startsWith("*")) {
-    const langName = line.slice(1).trim();
-    langs.push(langName);
+    langs.push(line.slice(1).trim());
     coursesByLang.push([]);
     currentLang++;
     currentCourse = -1;
     return;
   }
 
-  // コース
   if (line.startsWith(">")) {
-    const courseName = line.slice(1).trim();
     coursesByLang[currentLang].push({
-      name: courseName,
+      name: line.slice(1).trim(),
       sentences: []
     });
     currentCourse++;
     return;
   }
 
-  // 例文
-  if (currentLang >= 0 && currentCourse >= 0) {
-    coursesByLang[currentLang][currentCourse].sentences.push(line);
-  }
+  coursesByLang[currentLang][currentCourse].sentences.push(line);
 });
-let state = {
-  lang: 0,
-  course: 0
-};
 
+/* =========================
+   状態管理
+========================= */
 
+let state = { lang: 0, course: 0 };
+let poolJP = [], poolLang = [];
+let currentWords = [], buttons = [];
+let correctAnswers = [];
+let questionQueue = []; // 未正解問題キュー
 
+/* =========================
+   進捗（localStorage）
+========================= */
 
-/* ===== 単語プール構築（言語別） ===== */
+const STORAGE_KEY = "courseProgress_v1";
+let courseProgress = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+
+function getProgressKey(lang, course) {
+  return lang + "-" + course;
+}
+
+function getClearCount(lang, course) {
+  return courseProgress[getProgressKey(lang, course)] || 0;
+}
+
+function addClear(lang, course) {
+  const key = getProgressKey(lang, course);
+  courseProgress[key] = getClearCount(lang, course) + 1;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(courseProgress));
+}
+
+/* =========================
+   単語プール構築
+========================= */
+
 function buildWordPool() {
   const setJP = new Set();
   const setLang = new Set();
 
   const sentences = coursesByLang[state.lang][state.course].sentences;
-
 
   sentences.forEach(line => {
     const [lang, jpRaw] = line.split("\t");
@@ -194,30 +161,31 @@ function buildWordPool() {
   poolLang = [...setLang];
 }
 
+/* =========================
+   コース開始（キュー生成）
+========================= */
 
+function startCourse() {
+  const sentences = coursesByLang[state.lang][state.course].sentences;
+  questionQueue = [...sentences].sort(() => Math.random() - 0.5);
+  loadQuestion();
+}
 
-/* ===== 問題生成 ===== */
-
+/* =========================
+   問題表示（キュー方式）
+========================= */
 
 function loadQuestion() {
- if (phase == "quiz"){
-  const sentences = coursesByLang[state.lang][state.course].sentences;
+  if (questionQueue.length === 0) {
+    finishCourse();
+    return;
+  }
 
-  currentWords = [];
-  buttons = [];
-
-  document.getElementById("result").textContent = "";
-  document.getElementById("answerBox").textContent = "";
-  document.getElementById("wordButtons").innerHTML = "";
-  document.getElementById("checkBtn").style.display = "inline";
-  document.getElementById("nextBtn").style.display = "none";
-
-  const mode = document.getElementById("modeSelect").value;
-
-  const line = sentences[index % sentences.length];
+  const line = questionQueue[0];
   const [lang, jpRaw] = line.split("\t");
   const jps = jpRaw.split("/");
 
+  const mode = document.getElementById("modeSelect").value;
   let questionText, answers, pool;
 
   if (mode === "jp2lang") {
@@ -231,78 +199,67 @@ function loadQuestion() {
   }
 
   correctAnswers = answers;
+  currentWords = [];
+  buttons = [];
+
+  document.getElementById("result").textContent = "";
+  document.getElementById("answerBox").textContent = "";
+  document.getElementById("wordButtons").innerHTML = "";
+  document.getElementById("checkBtn").style.display = "inline";
+  document.getElementById("nextBtn").style.display = "none";
+  document.getElementById("backBtn").style.display = "inline";
 
   document.getElementById("question").innerHTML =
-    "【" + langs[state.lang] + "】 <br>" + questionText;
+    "【" + langs[state.lang] + " / " + coursesByLang[state.lang][state.course].name + "】<br>" + questionText;
 
-  // 正解単語
   let words = [];
-  
   answers.forEach(ans => ans.split(" ").forEach(w => words.push(w)));
 
-  // ダミー単語（同じ言語側のみ）
   while (words.length < Math.min(pool.length, 12)) {
-    const w = pool[Math.floor(Math.random() * pool.length)];
-    words.push(w);
+    words.push(pool[Math.floor(Math.random() * pool.length)]);
   }
 
-  words = Array.from(words).sort(() => Math.random() - 0.5);
+  words.sort(() => Math.random() - 0.5);
 
   const area = document.getElementById("wordButtons");
-
   words.forEach(word => {
     const btn = document.createElement("button");
     btn.textContent = word;
-
     btn.onclick = () => {
       currentWords.push(word);
-      btn.style.display = "none"; // 消す
+      btn.style.display = "none";
       buttons.push(btn);
       updateAnswer();
     };
-
     area.appendChild(btn);
   });
-  var image = Math.floor(Math.random()*7);
-  document.getElementById("img").src="pic/"+image+".gif"
-  sizeChange();
- }
+
+  document.getElementById("img").src = "pic/" + Math.floor(Math.random()*7) + ".gif";
 }
 
-
-/* ===== 解答表示 ===== */
+/* =========================
+   解答表示
+========================= */
 
 function updateAnswer() {
   document.getElementById("answerBox").textContent = currentWords.join(" ");
 }
 
-
-/* ===== 単語削除（ボタン復活） ===== */
+/* =========================
+   単語削除
+========================= */
 
 document.getElementById("backBtn").onclick = () => {
   if (currentWords.length === 0) return;
-
   const removed = currentWords.pop();
-
-  // 消えたボタンを復活
   const btn = buttons.find(b => b.textContent === removed && b.style.display === "none");
   if (btn) btn.style.display = "";
-
   updateAnswer();
 };
 
-
-/* ===== 判定 ===== */
-
-document.getElementById("nextBtn").onclick = () => {
-  if (mistake == -1){
-    const sentences = coursesByLang[state.lang][state.course].sentences;
-
-    index = Math.floor(Math.random() * sentences.length);
-  }
-  currentWords = [];
-  loadQuestion();
-};
+/* =========================
+   判定（キュー制御）
+========================= */
 
 document.getElementById("checkBtn").onclick = () => {
   const userAnswer = currentWords.join(" ");
@@ -313,24 +270,58 @@ document.getElementById("checkBtn").onclick = () => {
   if (ok) {
     result.textContent = "✅ 正解";
     result.className = "correct";
-    mistake = -1;
+
+    // 正解 → キューから削除
+    questionQueue.shift();
   } else {
-    mistake = 1;
-    result.textContent = "❌ 不正解 / 正解: " + correctAnswers.join(" / ");
+    result.textContent = "❌ 不正解";
     result.className = "wrong";
+
+    // 不正解 → 後ろに回す
+    questionQueue.push(questionQueue.shift());
   }
 
   document.getElementById("checkBtn").style.display = "none";
   document.getElementById("nextBtn").style.display = "inline";
 };
 
+document.getElementById("nextBtn").onclick = () => {
+  loadQuestion();
+};
 
-/* ===== 次へ ===== */
+/* =========================
+   コースクリア処理
+========================= */
 
+function finishCourse() {
+  addClear(state.lang, state.course);
+  const count = getClearCount(state.lang, state.course);
 
-document.getElementById("modeSelect").onchange = loadQuestion;
+  document.getElementById("question").textContent =
+    "🎉 コースクリア！ (" + count + "/2)";
+  document.getElementById("wordButtons").innerHTML = "";
+  document.getElementById("answerBox").textContent = "";
+  document.getElementById("checkBtn").style.display = "none";
+  document.getElementById("nextBtn").style.display = "none";
 
-let langPage = 0;
+  updateCourseButtons();
+}
+
+/* =========================
+   言語・コース選択UI
+========================= */
+
+function updateLangButtons() {
+  const area = document.getElementById("langButtons");
+  area.innerHTML = "";
+
+  langs.forEach((name, i) => {
+    const btn = document.createElement("button");
+    btn.textContent = name;
+    btn.onclick = () => selectLanguage(i);
+    area.appendChild(btn);
+  });
+}
 
 function updateCourseButtons() {
   const area = document.getElementById("courseButtons");
@@ -340,122 +331,54 @@ function updateCourseButtons() {
 
   courses.forEach((c, i) => {
     const btn = document.createElement("button");
-    btn.textContent = c.name;
-    btn.onclick = () => selectCourse(i);
+    const cleared = getClearCount(state.lang, i);
+    const locked = i > 0 && getClearCount(state.lang, i-1) < 2;
+
+    btn.textContent = c.name + " (" + cleared + "/2)";
+    if (locked) {
+      btn.classList.add("locked");
+      btn.textContent = "🔒 " + btn.textContent;
+      btn.disabled = true;
+    } else {
+      btn.onclick = () => selectCourse(i);
+    }
+
     area.appendChild(btn);
   });
 }
 
-
-function updateLangButtons() {
-  const base = langPage * 3;
-  const area = document.getElementById("langButtons");
-  area.innerHTML = "";
-  
-  for (let i = 0; i < langs.length; i++) {
-    const idx = base + i;
-    if (!langs[idx]) continue;
-
-    const btn = document.createElement("button");
-    btn.textContent = langs[idx];
-    btn.onclick = () => {
-      state.lang = idx;
-      buildWordPool();
-      const sentences = coursesByLang[state.lang][state.course].sentences;
-
-      index = Math.floor(Math.random() * sentences.length);
-      loadQuestion();
-      selectLanguage(idx);
-    };
-    area.appendChild(btn);
-  }
-}
-
-document.getElementById("backLangBtn").onclick = () => {
-
-  if (phase === "quiz") {
-    phase = "course";
-    document.getElementById("courseSelect").style.display = "block";
-    document.getElementById("question").textContent = "";
-    document.getElementById("answerBox").textContent = "";
-document.getElementById("checkBtn").style.display = "none";
-document.getElementById("nextBtn").style.display = "none";
- document.getElementById("wordButtons").innerHTML = "";
-    document.getElementById("result").textContent = "";
-    return;
-  }
-
-  if (phase === "course") {
-    phase = "lang";
-    document.getElementById("courseSelect").style.display = "none";
-    document.getElementById("langSelect").style.display = "block";
-    document.getElementById("backLangBtn").style.display = "none";
-document.getElementById("checkBtn").style.display = "none";
-document.getElementById("nextBtn").style.display = "none";
-  }
-};
-
-
-
 function selectLanguage(idx) {
   state.lang = idx;
-  phase = "course";
-
   document.getElementById("langSelect").style.display = "none";
   document.getElementById("courseSelect").style.display = "block";
-
+  document.getElementById("backLangBtn").style.display = "inline";
   updateCourseButtons();
 }
 
 function selectCourse(idx) {
   state.course = idx;
-  phase = "quiz";
-
   document.getElementById("courseSelect").style.display = "none";
-  document.getElementById("backLangBtn").style.display = "inline";
-
   buildWordPool();
-  const sentences = coursesByLang[state.lang][state.course].sentences;
-  index = Math.floor(Math.random() * sentences.length);
-  loadQuestion();
+  startCourse();
 }
 
+/* =========================
+   戻るボタン
+========================= */
+
+document.getElementById("backLangBtn").onclick = () => {
+  document.getElementById("courseSelect").style.display = "none";
+  document.getElementById("langSelect").style.display = "block";
+  document.getElementById("backLangBtn").style.display = "none";
+  document.getElementById("question").textContent = "";
+  document.getElementById("wordButtons").innerHTML = "";
+};
+
+/* =========================
+   初期化
+========================= */
 
 updateLangButtons();
-addEventListener("load", (event) => {sizeChange();});
-function sizeChange(){
-  if (screen.width > screen.height){
-  var size = "30px"
-  document.getElementById("question").style.fontSize = size;
-  document.getElementById("answerBox").style.fontSize = size;
-  document.getElementById("modeSelect").style.fontSize = size;
-  document.getElementById("wordButtons").style.fontSize = size;
-  document.getElementById("center").style.top="0%";
-  document.querySelectorAll('button').forEach(btn => {
-   btn.style.fontSize= size; 
-   btn.style.margin= "5px"; 
-  });
-  document.getElementById("result").style.fontSize = size;
-  }else{
-  var size = "60px"
-  document.getElementById("question").style.fontSize = size;
-  document.getElementById("answerBox").style.fontSize = size;
-  document.getElementById("modeSelect").style.fontSize = size;
-  document.getElementById("wordButtons").style.fontSize = size;
-  document.getElementById("center").style.top="50%";
-  document.querySelectorAll('button').forEach(btn => {
-   btn.style.fontSize= size; 
-   btn.style.margin= "15px"; 
-  });
-  document.getElementById("result").style.fontSize = size;
-  }
-  if (screen.height < 500 || screen.width>screen.height){
-   document.getElementById("img").style.transform= "scale(1)";
-   document.getElementById("img").style.margin= "0px";
-  }else{
-    document.getElementById("img").style.transform= "scale(2)";
-   document.getElementById("img").style.margin= "50px";
-  }
-}
-window.addEventListener("resize", sizeChange);
 </script>
+</body>
+</html>

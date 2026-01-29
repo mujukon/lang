@@ -302,7 +302,7 @@ function finishCourse() {
   document.getElementById("answerBox").textContent = "";
   document.getElementById("checkBtn").style.display = "none";
   document.getElementById("nextBtn").style.display = "none";
-
+document.getElementById("backBtn").style.display = "none";
   updateCourseButtons();
 }
 
@@ -366,7 +366,7 @@ function selectCourse(idx) {
 ========================= */
 
 document.getElementById("backLangBtn").onclick = () => {
-  document.getElementById("courseSelect").style.display = "none";
+document.getElementById("backBtn").style.display = "none"; document.getElementById("courseSelect").style.display = "none";
  document.getElementById("checkBtn").style.display = "none";
 document.getElementById("nextBtn").style.display = "none"; document.getElementById("langSelect").style.display = "block";
  document.getElementById("progress").style.display = "none"; document.getElementById("backLangBtn").style.display = "none";

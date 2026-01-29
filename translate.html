@@ -184,9 +184,11 @@ function loadQuestion() {
   const [lang, jpRaw] = line.split("\t");
   const jps = jpRaw.split("/");
 
-  const mode = document.getElementById("modeSelect").value;
+  const mode = "jp2lang"
+  if (getClearCount(state.lang, state.course)%2==0){mode = "lang2jp"}
+  
   let questionText, answers, pool;
-
+  
   if (mode === "jp2lang") {
     questionText = jps[0];
     answers = [lang];
@@ -377,13 +379,14 @@ function progress(){
  var txt ="";
  var q = questionQueue.length;
  for (let i=0;i<9;i++){
-  if(q/total>i*10){
+  if(q/total>i/10){
    txt = txt+"●"
   }else{
    txt=txt+"〇"  
   }
  }
   txt=txt+Math.floor(q/total*100)+"%"
+  document.getElementById("progress").textContent = txt;
 }
 
 /* =========================

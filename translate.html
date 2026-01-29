@@ -173,6 +173,10 @@ function startCourse() {
    問題表示（キュー方式）
 ========================= */
 
+function normalize(str) {
+  return str.replace(/\s+/g, " ").trim();
+}
+
 function loadQuestion() {
   if (questionQueue.length === 0) {
     finishCourse();
@@ -197,6 +201,7 @@ function loadQuestion() {
     answers = jps;
     pool = poolJP;
   }
+  
 
   correctAnswers = answers;
   currentWords = [];
@@ -213,11 +218,17 @@ function loadQuestion() {
     "【" + langs[state.lang] + " / " + coursesByLang[state.lang][state.course].name + "】<br>" + questionText;
 
   let words = [];
-  answers.forEach(ans => ans.split(" ").forEach(w => words.push(w)));
+  answers.forEach(ans =>
+  ans.split(" ")
+    .map(w => w.trim())
+    .filter(w => w !== "")
+    .forEach(w => words.push(w))
+);
 
-  while (words.length < Math.min(pool.length, 12)) {
-    words.push(pool[Math.floor(Math.random() * pool.length)]);
-  }
+while (words.length < Math.min(pool.length, 12)) {
+  const w = pool[Math.floor(Math.random() * pool.length)].trim();
+  if (w !== "") words.push(w);
+}
 
   words.sort(() => Math.random() - 0.5);
 
@@ -262,24 +273,23 @@ document.getElementById("backBtn").onclick = () => {
 ========================= */
 
 document.getElementById("checkBtn").onclick = () => {
-  const userAnswer = currentWords.join(" ");
-  const ok = correctAnswers.includes(userAnswer);
+  const userAnswer = normalize(currentWords.join(" "));
+
+  const ok = correctAnswers.some(ans => normalize(ans) === userAnswer);
 
   const result = document.getElementById("result");
-  
+
   if (ok) {
     result.textContent = "✅ 正解";
     result.className = "correct";
-
-    // 正解 → キューから削除
     questionQueue.shift();
   } else {
-    result.textContent = "❌ 不正解\n正解: " + correctAnswers.join(" / ");
+    result.textContent =
+      "❌ 不正解\n正解: " + correctAnswers.join(" / ");
     result.className = "wrong";
-
-    // 不正解 → 後ろに回す
     questionQueue.push(questionQueue.shift());
   }
+
   progress();
   document.getElementById("checkBtn").style.display = "none";
   document.getElementById("nextBtn").style.display = "inline";

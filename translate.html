@@ -101,8 +101,8 @@ button {
 </div>
 
 <div id="bottomBar">
-  <button id="backLangBtn">言語選択に戻る</button>
-  <button id="checkBtn">答え合わせ</button>
+  <button id="backLangBtn" style="display:none;">言語選択に戻る</button>
+  <button id="checkBtn" style="display:none;">答え合わせ</button>
   <button id="nextBtn" style="display:none;">次へ</button>
 </div>
 
@@ -340,6 +340,8 @@ document.getElementById("backLangBtn").onclick = () => {
 
   // 戻るボタン非表示
   document.getElementById("backLangBtn").style.display = "none";
+  document.getElementById("checkBtn").style.display = "none";
+  document.getElementById("nextBtn").style.display = "none";
 };
 function selectLanguage(idx) {
   state.lang = idx;
@@ -351,7 +353,7 @@ function selectLanguage(idx) {
 
   // 言語選択UIを消す
   document.getElementById("langSelect").style.display = "none";
-
+  
   // 戻るボタン表示
   document.getElementById("backLangBtn").style.display = "inline";
 
@@ -396,4 +398,5 @@ function sizeChange(){
 }
 window.addEventListener("resize", sizeChange);
 </script>
+
 

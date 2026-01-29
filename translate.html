@@ -12,7 +12,7 @@ body{
   padding: 0;
 }
 #question { font-size: 50px; margin: 5px; }
-#img { position: relative; z-index: -1; transform: scale(2); margin: 5px; }
+#img { position: relative; z-index: -1; transform: scale(2); margin: 50px; }
 button {
   margin: 15px;
   font-size: 60px;
@@ -47,8 +47,6 @@ button {
 </style>
 </head>
 <body>
-
-<h2>翻訳演習</h2>
 
 <div id=""><h2 id="progress"></h2></div>
 
@@ -376,7 +374,7 @@ document.getElementById("backLangBtn").onclick = () => {
 };
 
 function progress(){
- var txt ="";
+ var txt ="進捗:";
  var q = questionQueue.length;
  for (let i=0;i<10;i++){
   if(1-q/total>i/10){
@@ -392,7 +390,49 @@ function progress(){
 /* =========================
    初期化
 ========================= */
-
+addEventListener("load", (event) => {sizeChange();});
+  
+function sizeChange(){
+  
+  if (screen.width > screen.height){
+  var size = "30px"
+ document.getElementById("question").style.fontSize = size; document.getElementById("answerBox").style.fontSize = size; document.getElementById("wordButtons").style.fontSize = size;
+  
+  document.getElementById("center").style.top="0%";
+  
+  document.querySelectorAll('button').forEach(btn => {
+  
+   btn.style.fontSize= size; 
+  
+   btn.style.margin= "5px"; 
+  
+  });
+  
+  document.getElementById("result").style.fontSize = size;
+  }else{
+var size = "60px"
+ document.getElementById("question").style.fontSize = size; document.getElementById("answerBox").style.fontSize = size;
+document.getElementById("wordButtons").style.fontSize = size;  document.getElementById("center").style.top="50%";
+  document.querySelectorAll('button').forEach(btn => {
+   btn.style.fontSize= size; 
+   btn.style.margin= "15px"; 
+  });
+  document.getElementById("result").style.fontSize = size;
+  }
+  
+  if (screen.height < 500 || screen.width>screen.height){
+   document.getElementById("img").style.transform= "scale(1)";
+   document.getElementById("img").style.margin= "0px";
+  
+  }else{
+    document.getElementById("img").style.transform= "scale(2)";
+   document.getElementById("img").style.margin= "50px";
+  
+  }
+  
+}
+  
+window.addEventListener("resize", sizeChange);
 updateLangButtons();
 </script>
 </body>

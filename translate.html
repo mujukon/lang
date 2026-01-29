@@ -12,7 +12,7 @@ body{
   padding: 0;
 }
 #question { font-size: 50px; margin: 5px; }
-#img { position: relative; z-index: -1; transform: scale(2); margin: 50px; }
+#img { position: relative; z-index: -1; transform: scale(1.75); margin: 50px; }
 button {
   margin: 15px;
   font-size: 60px;
@@ -47,7 +47,7 @@ button {
 </style>
 </head>
 <body>
-
+<h2>ところてんlingo</h2>
 <div id=""><h2 id="progress"></h2></div>
 
 <div id="center">
@@ -367,7 +367,8 @@ function selectCourse(idx) {
 
 document.getElementById("backLangBtn").onclick = () => {
   document.getElementById("courseSelect").style.display = "none";
-  document.getElementById("langSelect").style.display = "block";
+ document.getElementById("checkBtn").style.display = "none";
+document.getElementById("nextBtn").style.display = "none"; document.getElementById("langSelect").style.display = "block";
  document.getElementById("progress").style.display = "none"; document.getElementById("backLangBtn").style.display = "none";
   document.getElementById("question").textContent = "";
   document.getElementById("wordButtons").innerHTML = "";
@@ -425,7 +426,7 @@ document.getElementById("wordButtons").style.fontSize = size;  document.getEleme
    document.getElementById("img").style.margin= "0px";
   
   }else{
-    document.getElementById("img").style.transform= "scale(2)";
+    document.getElementById("img").style.transform= "scale(1.75)";
    document.getElementById("img").style.margin= "50px";
   
   }

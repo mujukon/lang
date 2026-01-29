@@ -1,7 +1,7 @@
 var sentenceText = `*アクァルヅァルゴ語
 >適当な例文すぐに
-efntapqaot eʕd͡zallao		私は 窓を 開けて 外の 空気を 入れる
-epcʰisʼleq eɬvsitɲcʰeː	彼の 説明は 分かりやすかった ので 私は 完全に 納得できた
+efntapqaot eʕd͡zallao/ella		私は 窓を 開けて 外の 空気を 入れる/私は入れる
+eɬvsitɲcʰeː	私は 完全に 納得できた/あーそういうことね完全に理解した
 >適当な例文
 ɲaɟem t͡saba elptak ðebtʼɪɲga	ペットの 鳥を 放すと 飛んでいってしまう かもしれない
 tato ejat ɪvt͡ʃo epyɲɣʷe	お父さんが 家に 帰ってくると 子供たちは みんな お父さんに 抱きついた

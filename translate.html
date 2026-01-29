@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -65,7 +65,6 @@ button {
 #bottomBar button {
   font-size: 50px;
   padding: 30px 16px;
-  margin: 80px;
 }
 
 .correct { 
@@ -97,12 +96,16 @@ button {
   <div id="langSelect">
     <div id="langButtons"></div>
   </div>
+  <div id="courseSelect" style="display:none;">
+  <div id="courseButtons"></div>
+</div>
+
 <button id="backBtn">← 単語削除</button>
 </div>
 
 <div id="bottomBar">
-  <button id="backLangBtn" style="display:none;">言語選択に戻る</button>
-  <button id="checkBtn" style="display:none;">答え合わせ</button>
+  <button id="backLangBtn">言語選択に戻る</button>
+  <button id="checkBtn">答え合わせ</button>
   <button id="nextBtn" style="display:none;">次へ</button>
 </div>
 
@@ -122,30 +125,53 @@ let poolJP = [];
 let poolLang = [];
 let buttons = [];
 let mistake = -1;
-let phase = "lang"; // "lang" or "quiz"
-
-const blocks = sentenceText.split("*");
+let phase = "lang"; 
+// "lang" → 言語選択
+// "course" → コース選択
+// "quiz" → クイズ
 
 const langs = [];
-const sentencesByLang = [];
+const coursesByLang = [];
 
+let currentLang = -1;
+let currentCourse = -1;
+
+sentenceText.split("\n").forEach(line => {
+  line = line.trim();
+  if (!line) return;
+
+  // 言語
+  if (line.startsWith("*")) {
+    const langName = line.slice(1).trim();
+    langs.push(langName);
+    coursesByLang.push([]);
+    currentLang++;
+    currentCourse = -1;
+    return;
+  }
+
+  // コース
+  if (line.startsWith(">")) {
+    const courseName = line.slice(1).trim();
+    coursesByLang[currentLang].push({
+      name: courseName,
+      sentences: []
+    });
+    currentCourse++;
+    return;
+  }
+
+  // 例文
+  if (currentLang >= 0 && currentCourse >= 0) {
+    coursesByLang[currentLang][currentCourse].sentences.push(line);
+  }
+});
 let state = {
-  lang: 0
+  lang: 0,
+  course: 0
 };
 
 
-blocks.forEach(block => {
-  block = block.trim();
-  if (!block) return;
-
-  const lines = block.split("\n").filter(l => l.trim() !== "");
-
-  const langName = lines[0].trim(); // 言語名
-  langs.push(langName);
-
-  const sentences = lines.slice(1); // 例文部分
-  sentencesByLang.push(sentences);
-});
 
 
 /* ===== 単語プール構築（言語別） ===== */
@@ -153,7 +179,8 @@ function buildWordPool() {
   const setJP = new Set();
   const setLang = new Set();
 
-  const sentences = sentencesByLang[state.lang];
+  const sentences = coursesByLang[state.lang][state.course].sentences;
+
 
   sentences.forEach(line => {
     const [lang, jpRaw] = line.split("\t");
@@ -174,7 +201,8 @@ function buildWordPool() {
 
 function loadQuestion() {
  if (phase == "quiz"){
-  const sentences = sentencesByLang[state.lang];
+  const sentences = coursesByLang[state.lang][state.course].sentences;
+
   currentWords = [];
   buttons = [];
 
@@ -208,13 +236,14 @@ function loadQuestion() {
     "【" + langs[state.lang] + "】 <br>" + questionText;
 
   // 正解単語
-  let words = new Set();
-  answers.forEach(ans => ans.split(" ").forEach(w => words.add(w)));
+  let words = [];
+  
+  answers.forEach(ans => ans.split(" ").forEach(w => words.push(w)));
 
   // ダミー単語（同じ言語側のみ）
-  while (words.size < Math.min(pool.length, 12)) {
+  while (words.length < Math.min(pool.length, 12)) {
     const w = pool[Math.floor(Math.random() * pool.length)];
-    words.add(w);
+    words.push(w);
   }
 
   words = Array.from(words).sort(() => Math.random() - 0.5);
@@ -267,7 +296,8 @@ document.getElementById("backBtn").onclick = () => {
 
 document.getElementById("nextBtn").onclick = () => {
   if (mistake == -1){
-    const sentences = sentencesByLang[state.lang]
+    const sentences = coursesByLang[state.lang][state.course].sentences;
+
     index = Math.floor(Math.random() * sentences.length);
   }
   currentWords = [];
@@ -302,6 +332,21 @@ document.getElementById("modeSelect").onchange = loadQuestion;
 
 let langPage = 0;
 
+function updateCourseButtons() {
+  const area = document.getElementById("courseButtons");
+  area.innerHTML = "";
+
+  const courses = coursesByLang[state.lang];
+
+  courses.forEach((c, i) => {
+    const btn = document.createElement("button");
+    btn.textContent = c.name;
+    btn.onclick = () => selectCourse(i);
+    area.appendChild(btn);
+  });
+}
+
+
 function updateLangButtons() {
   const base = langPage * 3;
   const area = document.getElementById("langButtons");
@@ -316,7 +361,8 @@ function updateLangButtons() {
     btn.onclick = () => {
       state.lang = idx;
       buildWordPool();
-      const sentences = sentencesByLang[state.lang]
+      const sentences = coursesByLang[state.lang][state.course].sentences;
+
       index = Math.floor(Math.random() * sentences.length);
       loadQuestion();
       selectLanguage(idx);
@@ -325,40 +371,51 @@ function updateLangButtons() {
   }
 }
 
-
 document.getElementById("backLangBtn").onclick = () => {
-  phase = "lang";
 
-  // 言語選択UI表示
-  document.getElementById("langSelect").style.display = "block";
+  if (phase === "quiz") {
+    phase = "course";
+    document.getElementById("courseSelect").style.display = "block";
+    document.getElementById("question").textContent = "";
+    document.getElementById("answerBox").textContent = "";
+    document.getElementById("wordButtons").innerHTML = "";
+    document.getElementById("result").textContent = "";
+    return;
+  }
 
-  // クイズUIはそのままでもOKだけど、消したければ：
-  document.getElementById("question").textContent = "";
-  document.getElementById("answerBox").textContent = "";
-  document.getElementById("wordButtons").innerHTML = "";
-  document.getElementById("result").textContent = "";
-
-  // 戻るボタン非表示
-  document.getElementById("backLangBtn").style.display = "none";
-  document.getElementById("checkBtn").style.display = "none";
-  document.getElementById("nextBtn").style.display = "none";
+  if (phase === "course") {
+    phase = "lang";
+    document.getElementById("courseSelect").style.display = "none";
+    document.getElementById("langSelect").style.display = "block";
+    document.getElementById("backLangBtn").style.display = "none";
+  }
 };
+
+
+
 function selectLanguage(idx) {
   state.lang = idx;
-  phase = "quiz";
-  const sentences = sentencesByLang[state.lang]
-  index = Math.floor(Math.random() * sentences.length);
-  buildWordPool();
-  loadQuestion();
+  phase = "course";
 
-  // 言語選択UIを消す
   document.getElementById("langSelect").style.display = "none";
-  
-  // 戻るボタン表示
+  document.getElementById("courseSelect").style.display = "block";
+
+  updateCourseButtons();
+}
+
+function selectCourse(idx) {
+  state.course = idx;
+  phase = "quiz";
+
+  document.getElementById("courseSelect").style.display = "none";
   document.getElementById("backLangBtn").style.display = "inline";
 
-  
+  buildWordPool();
+  const sentences = coursesByLang[state.lang][state.course].sentences;
+  index = Math.floor(Math.random() * sentences.length);
+  loadQuestion();
 }
+
 
 updateLangButtons();
 addEventListener("load", (event) => {sizeChange();});
@@ -390,14 +447,11 @@ function sizeChange(){
   }
   if (screen.height < 500 || screen.width>screen.height){
    document.getElementById("img").style.transform= "scale(1)";
-   document.getElementById("img").style.margin= "10px";
+   document.getElementById("img").style.margin= "0px";
   }else{
     document.getElementById("img").style.transform= "scale(2)";
-   document.getElementById("img").style.margin= "80px";
+   document.getElementById("img").style.margin= "50px";
   }
 }
 window.addEventListener("resize", sizeChange);
 </script>
-
-
-

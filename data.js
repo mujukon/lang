@@ -1,4 +1,5 @@
 var sentenceText = `*アクァルヅァルゴ語
+>適当な例文
 efntapqaot eʕd͡zallao	私は 窓を 開けて 外の 空気を 入れる
 epcʰisʼleq eɬvsitɲcʰeː	彼の 説明は 分かりやすかった ので 私は 完全に 納得できた
 ɲaɟem t͡saba elptak ðebtʼɪɲga	ペットの 鳥を 放すと 飛んでいってしまう かもしれない
@@ -56,6 +57,7 @@ amtɨrɣʷɨmbɹa exaː	朝の 鐘が 鳴り響く 音を 聞く
 ɪħaqqʰo eχqam ʒaɢøːt eħkac ɲeqʰaː	その お弁当は 可愛い 容器に 入っていて 歩きながら 食べられる
 mamo ɨʒa eççɪħkar	母は 荷物を 引っ張って 歩いている
 magjem alʁɢʷbɛːɲyl biʒis ekʼʷeç	彼女は アナウンサーに なる ことが 夢で 毎日 練習に 励んでいた
+>48格の例文集
 afriɹo eħkarlo	太陽神が 歩く
 mo qʼaɹptʰa olaː	私は 虹を 見なかった
 mo fa exkɤː	私は あなたに 会う であろう
@@ -104,6 +106,7 @@ tʼɤmøg ɪcamt͡ʃo era ɔ	駅の 近くに その 事故物件は あった �
 adjoːɹkʰeɬ epʰteːr	ケモノの 少年から 離れた ところで スポーツを していた
 ɾis ma mɑloŋ fetŋejo?	今 私を 魔法使いと 呼んだ のか
 fo falov ɲelaje?	あなたは 光なしで ものを 見る ことが できる のか
+>適当な例文2
 ɤŋʷɨtʼmo eːtqar	新しい 駅が 建設されている
 efrçkʼalaok ɦʌʂ evbjeox	夕焼け 空を 見上げると 心が すっと 穏やかな 気持ちに なった
 aðʒʷɨlɲɟəːõ	私たちには 共通の 目標が ある
@@ -148,7 +151,8 @@ raʕtʼis epʰɾam spɛklɑːo	私は 目下 アルバイトを している 大
 bɤɣlø eːlŋ̊ʷam baɣla emjaːt eŋ̊ʷam mɪza eɲɟaː	私は レコード屋で 昔 懐かしい レコードを 買って 昔の 曲を 楽しんでいる
 si tim pata ɢʷelɣŋaː	その 人の 仕事を 評価する のは 難しい
 ecaop adɨmgjəː	私は 身長が 小さい が 大きな 夢を 持っている
-*ヒューシェア初級
+*ヒューシェア
+>初級
 Aks zi Iwan	私は ユワン です
 Aks zi ain beit	私は 人 です
 Aks eure	私は 教える
@@ -160,6 +164,7 @@ Ce eurek	あなたは 教える
 Ce na eurek	あなたは 教えない
 Ce na cek Miscal	あなたは ミシャル ではありません
 *ジェネレス語
+>その一
 Iol stori es nomal rumor	彼の 話は 単なる 噂 でした。
 Me ielook skel everidei	私は 毎日 空を 観察 している。
 Conpan mūv we new place nexmons	会社が 来月 新しい 場所に 移転 する。
@@ -187,6 +192,7 @@ Nīche es la pen	これ は ペン です。
 Me drinkä la café	私は コーヒーを 飲む。
 Mez conpan es eliom but olla-mion fojion so gōd work	私たちの 会社は 小さな組織 ですが みんなで 協力して 良い 仕事を しています。
 *イスクイル3
+>挨拶と例文
 Uiphawâtļûxe’ň?	それは 象徴的な 大きな 木立 なのでしょうか?
 hremsoqaiţsurkoi	人間の 多様な 属性から 得られる 価値によって
 ／qhûl-lyai’svukšei’arpîptó’ks	抵抗にもかかわらず 怪しげな ピエロの 寄せ集めの集団を 使って 繰り返し 恐怖を煽ろうとした と伝えられているが 信じ難い
@@ -196,10 +202,9 @@ En-n ki ač	あなたが 元気でいることを 願っている
 Ti glalač	私は 元気だ
 Ükhu attál	挨拶を申し上げます
 Ki attàwîl	あなたに 挨拶を
-Attál	こんにちは
+Attál	こんちは
 Attàwîl	こんにちは
-Attàlûk	さよなら
-
+Attàlûk	さよなら
 Ükhu ettál	歓迎します`
 
 

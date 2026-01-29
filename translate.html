@@ -104,8 +104,8 @@ button {
 </div>
 
 <div id="bottomBar">
-  <button id="backLangBtn">言語選択に戻る</button>
-  <button id="checkBtn">答え合わせ</button>
+  <button id="backLangBtn" style="display:none;">言語選択に戻る</button>
+  <button id="checkBtn" style="display:none;">答え合わせ</button>
   <button id="nextBtn" style="display:none;">次へ</button>
 </div>
 
@@ -390,6 +390,8 @@ document.getElementById("nextBtn").style.display = "none";
     document.getElementById("courseSelect").style.display = "none";
     document.getElementById("langSelect").style.display = "block";
     document.getElementById("backLangBtn").style.display = "none";
+document.getElementById("checkBtn").style.display = "none";
+document.getElementById("nextBtn").style.display = "none";
   }
 };
 

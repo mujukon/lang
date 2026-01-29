@@ -368,18 +368,30 @@ function selectCourse(idx) {
 ========================= */
 
 document.getElementById("backLangBtn").onclick = () => {
-document.getElementById("backBtn").style.display = "none"; document.getElementById("courseSelect").style.display = "none";
- document.getElementById("checkBtn").style.display = "none";
-document.getElementById("nextBtn").style.display = "none"; document.getElementById("langSelect").style.display = "block";
- document.getElementById("progress").style.display = "none"; document.getElementById("backLangBtn").style.display = "none";
+  // 全体の共通初期化（一旦隠す、中身を消す）
+  document.getElementById("checkBtn").style.display = "none";
+  document.getElementById("nextBtn").style.display = "none";
+  document.getElementById("progress").style.display = "none";
   document.getElementById("question").textContent = "";
   document.getElementById("wordButtons").innerHTML = "";
- if (phase=="quiz"){
-  updateCourseButtons();
- }else if(phase="course"){
-  updateLangButtons();
- }
+
+  if (phase === "quiz") {
+    // クイズ中ならコース選択画面に戻す
+    phase = "course";
+    document.getElementById("courseSelect").style.display = "block";
+    document.getElementById("langSelect").style.display = "none";
+    updateCourseButtons();
+  } 
+  else if (phase === "course") {
+    // コース選択中なら言語選択画面に戻す
+    phase = "lang";
+    document.getElementById("courseSelect").style.display = "none";
+    document.getElementById("langSelect").style.display = "block";
+    document.getElementById("backLangBtn").style.display = "none"; // 一番親に戻るので戻るボタン自体消す
+    updateLangButtons();
+  }
 };
+
 
 function progress(){
  var txt ="進捗:";

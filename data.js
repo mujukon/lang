@@ -160,21 +160,32 @@ Ce eurek	あなたは 教える
 Ce na eurek	あなたは 教えない
 Ce na cek Miscal	あなたは ミシャル ではありません
 *ジェネレス語
-Iol stori es nomal rumor	彼の 話は 単なる 噂 でした
-Me ielook skel everidei	私は 毎日 空を 観察 している
+Iol stori es nomal rumor	彼の 話は 単なる 噂 でした。
+Me ielook skel everidei	私は 毎日 空を 観察 している。
 Conpan mūv we new place nexmons	会社が 来月 新しい 場所に 移転 する。
 Me ju mék new friend opor	私は 新しい 友達を 作る 機会が ほしい です。
-Nīche measer meas aguärōd yūzamount	この メーターは 水道の 使用量を 測ります。
+Nīche measer meas la aguärōd'z yūzamount	この メーターは 水道の 使用量を 測ります。
 Eldei topic es wedā	今日の 話題は 天気 です。
-Iol brāk lomans so pein hāt so iol eat agules-snack we friend	彼女は 初めての 失恋で 心が 痛くて 友達 と 一緒に アイスクリームを 食べた。
+Iol brāk lomans so iol es pein hāt so iol eat agules-snack wez friend	彼女は 初めての 失恋で 心が 痛くて 友達 と 一緒に アイスクリームを 食べた。
 Mj.Yamada swātze car me	山田さんは 車で 私を 轢いた。
-Sän apear est skai ien moning	朝に なると 太陽が 東の空に 現れる。
-Swātze car me getaron	親友を 車で 轢く。
-Nīche fotas es ese méked wey nilon	この 靴下は ナイロンで 作られて います。
+Sän apear ien est skai ata moning	朝に なると 太陽が 東の空に 現れる。
+Me swātze car me getaron	親友を 車で 轢く。
+Nīche fotas es méked wey nilon	この 靴下は ナイロンで 作られて います。
 Me eat appl if your eat orensta	もし あなたが オレンジを 食べる なら 私は りんごを 食べる。
 Mez fait elsenoin	私たちは 病気と 戦います。
-Me xonsv go we stēsyon de me hav boze maleta	私は 重い スーツケースを 持って 駅まで 歩くのが とても 大変だった。
-Waz is your colfēno go we Tokyo?	なぜ あなたは 東京に 行く のですか？
+Me xonsv go we la stēsyon de me hav boze maleta	私は 重い スーツケースを 持って 駅まで 歩くのが とても 大変だった。
+Waz your colfēno go we Tōkyo?	なぜ あなたは 東京に 行く のですか？
+Con ielook bertefl Cresent Moon	夜空に 美しい 三日月が 見える。
+Me colfēno go we la mōl	私は モールに 行く つもりです。
+Nīche stik es 10cm	この 棒は 10 cm です。
+Mam yonic foston we la medel we kof konbi janat child	母は 転んで 膝を 擦りむいた 子供の 傷口を 優しく 薬で 拭いてあげた。
+Const la new scol	新しい 学校を 建設します。
+Nīche appl es eliom	この リンゴ は 小さい。
+Nīche es tonot la pen	これは ペン ではありません。
+Es nīche la pen?	これ は ペン ですか？
+Nīche es la pen	これ は ペン です。
+Me drinkä la café	私は コーヒーを 飲む。
+Mez conpan es eliom but olla-mion fojion so gōd work	私たちの 会社は 小さな組織 ですが みんなで 協力して 良い 仕事を しています。
 *イスクイル3
 Uiphawâtļûxe’ň?	それは 象徴的な 大きな 木立 なのでしょうか?
 hremsoqaiţsurkoi	人間の 多様な 属性から 得られる 価値によって
@@ -190,4 +201,5 @@ Attàwîl	こんにちは
 Attàlûk	さよなら
 
 Ükhu ettál	歓迎します`
+
 

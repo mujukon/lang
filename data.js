@@ -18,15 +18,15 @@ dinero	お金
 ban	2
 can	3
 xam	10
-Hó dinero es nīche boleto?	この 切符 は いくら ですか？
+Hó dinero es nīche boleto?	この 切符 は いくらですか？
 nīche	これ
 >2.レストランで注文
 stēk	ステーキ
-Me ju stēk	ステーキがほしいです
-Stēk por favor	ステーキください
+Me ju stēk	ステーキが ほしいです
+Stēk por favor	ステーキ ください
 zes	それ
-Zes es ban xam en	それは300円です
-Hó dinero es zes?	それはいくらですか？
+Zes es ban xam en	それは 300円です
+Hó dinero es zes?	それは いくらですか？
 menu メニュー
 Ielo Menu por favor	こんにちは メニュー ください
 welcém	いらっしゃいませ
@@ -35,7 +35,7 @@ mion	人
 Welcém! Hó mänee mion?	いらっしゃいませ！ 何人 ですか？
 Mez	私たち
 Your	あなた
-Mez es can mion	私たちは3人です
+Mez es can mion	私たちは 3人 です
 Hó abōt your?	あなたは どうですか？
 >3.友達と電話
 fon	電話
@@ -121,7 +121,7 @@ Ce na eurek	あなたは 教えない
 Ce na cek Miscal	あなたは ミシャル ではありません
 *アクァルヅァルゴ語
 >適当な例文すぐに
-efntapqaot eʕd͡zallao/ella		私は 窓を 開けて 外の 空気を 入れる/私は入れる
+efntapqaot eʕd͡zallao	私は 窓を 開けて 外の 空気を 入れる/私は入れる
 eɬvsitɲcʰeː	私は 完全に 納得できた/あーそういうことね完全に理解した
 >適当な例文
 ɲaɟem t͡saba elptak ðebtʼɪɲga	ペットの 鳥を 放すと 飛んでいってしまう かもしれない
@@ -289,6 +289,7 @@ Attàwîl	こんにちは
 Attàlûk	さよなら
 
 Ükhu ettál	歓迎します`
+
 
 
 

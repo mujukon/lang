@@ -27,7 +27,7 @@ Stēk por favor	ステーキ ください
 zes	それ
 Zes es ban xam en	それは 300円です
 Hó dinero es zes?	それは いくらですか？
-menu メニュー
+menu	メニュー
 Ielo Menu por favor	こんにちは メニュー ください
 welcém	いらっしゃいませ
 Hó mänee	いくつ
@@ -289,6 +289,7 @@ Attàwîl	こんにちは
 Attàlûk	さよなら
 
 Ükhu ettál	歓迎します`
+
 
 
 

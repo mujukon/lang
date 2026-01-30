@@ -1,4 +1,125 @@
-var sentenceText = `*アクァルヅァルゴ語
+var sentenceText = `*ジェネレス語
+>1.電車に乗る
+Ielo	こんにちは
+por favor	お願いします
+Me	私
+ju	ほしい
+an	1
+wes	どこ
+stēsyon	駅
+train	電車
+Tōkyo	東京
+boleto	切符
+Wes es la stēsyon?	駅 は どこ ですか？
+Me ju an boleto	私は 1枚の 切符が ほしいです
+Wes es la me boleto?	私の 切符 は どこ ですか？
+Hó dinero?	いくらですか？
+dinero	お金
+ban	2
+can	3
+xam	10
+Hó dinero es nīche boleto?	この 切符 は いくら ですか？
+nīche	これ
+>2.レストランで注文
+stēk	ステーキ
+Me ju stēk	ステーキがほしいです
+Stēk por favor	ステーキください
+zes	それ
+Zes es ban xam en	それは300円です
+Hó dinero es zes?	それはいくらですか？
+menu メニュー
+Ielo Menu por favor	こんにちは メニュー ください
+welcém	いらっしゃいませ
+Hó mänee	いくつ
+mion	人
+Welcém! Hó mänee mion?	いらっしゃいませ！ 何人 ですか？
+Mez	私たち
+Your	あなた
+Mez es can mion	私たちは3人です
+Hó abōt your?	あなたは どうですか？
+>3.友達と電話
+fon	電話
+call	電話する
+friend	友達
+Hallo	もしもし
+Hallo me vizit we your iedol nexmons	もしもし 来月 あなたの 家を 訪れます
+Hallo me go we Tōkyo stēsyon	もしもし 私は 東京 駅 へ 行きます
+Me call we la me friend	私は 私の 友達に 電話をかける
+Me fon es brāked	私の 電話 は 壊れた
+>4.いろいろな単語
+Ielo	こんにちは
+Hallo	もしもし
+Me	私
+ju	ほしい
+an	1
+ban	2
+can	3
+dan	4
+ean	5
+fan	6
+gan	7
+han	8
+ian	9
+xam	10
+Tōkyo	東京
+boleto	切符
+train	電車
+stēsyon	駅
+nīche	これ
+stēk	ステーキ
+zes	それ
+menu	メニュー
+welcém	ようこそ
+Hó	mänee	いくつ
+Hó	dinero	いくら
+Mez	私たち
+Your	あなた
+Iol	彼
+Iolz	彼ら
+fon	電話
+call	電話する
+brāk	壊れる
+tonot	ではない
+nex	次
+nexmons	来月
+>5.1いろいろな文章1
+Me ju go we Tōkyo	私は 東京に 行きたい です
+Me vizit we your iedol	あなたの家に訪れます
+Hó mänee mion?	何人 ですか？
+Hó dinero es zes?	それはいくらですか？
+Zes es fan xam en	それ は 600 円 です
+Me fon es brāked	私の 電話 は 壊れた
+Hó abōt your?	あなたは どうですか？
+Menu por favor	メニューを ください
+Me ju la munu	メニューが ほしい です
+Wes es la Tōkyo stēsyon	東京駅 は どこ ですか？
+Nīche es la pen	これ は ペン です
+>5.2いろいろな文章2
+Es nīche la pen?	これ は ペン ですか？
+Nīche es tonot pen	これ は ペン ではありません
+Me colfēno go we Tōkyo	東京に 行く 予定です
+Me eat appl if your eat orensta	もし あなたが オレンジを 食べる なら 私は りんごを 食べる
+Mj.Yamada swātze car me	山田さんは 車で 私を 轢いた
+Swātze car me getaron	親友を 車で 轢く
+Me tonot neda	知りません
+Me is understand	分かりません
+Nīche fotas es méked wey nilon	この 靴下 は ナイロン で 作られた
+Me mék fotas	私は 靴下を 作る
+Iol grated la dan scol after work in iedoltawn bank	彼女は 大学を 卒業 してから 地元の 銀行で 仕事に就いている
+Con ielook bertefl Cresent Moon	美しい 三日月が 見える
+*ヒューシェア
+>初級
+Aks zi Iwan	私は ユワン です
+Aks zi ain beit	私は 人 です
+Aks eure	私は 教える
+Aks na fit	私は 食べない
+Aks na eure	私は 教えない
+Ce cek Maria	あなたは マリア です
+Mai irwef fist Miscal	私の 名前は ミシャル です
+Ce eurek	あなたは 教える
+Ce na eurek	あなたは 教えない
+Ce na cek Miscal	あなたは ミシャル ではありません
+*アクァルヅァルゴ語
 >適当な例文すぐに
 efntapqaot eʕd͡zallao/ella		私は 窓を 開けて 外の 空気を 入れる/私は入れる
 eɬvsitɲcʰeː	私は 完全に 納得できた/あーそういうことね完全に理解した
@@ -152,46 +273,6 @@ raʕtʼis epʰɾam spɛklɑːo	私は 目下 アルバイトを している 大
 bɤɣlø eːlŋ̊ʷam baɣla emjaːt eŋ̊ʷam mɪza eɲɟaː	私は レコード屋で 昔 懐かしい レコードを 買って 昔の 曲を 楽しんでいる
 si tim pata ɢʷelɣŋaː	その 人の 仕事を 評価する のは 難しい
 ecaop adɨmgjəː	私は 身長が 小さい が 大きな 夢を 持っている
-*ヒューシェア
->初級
-Aks zi Iwan	私は ユワン です
-Aks zi ain beit	私は 人 です
-Aks eure	私は 教える
-Aks na fit	私は 食べない
-Aks na eure	私は 教えない
-Ce cek Maria	あなたは マリア です
-Mai irwef fist Miscal	私の 名前は ミシャル です
-Ce eurek	あなたは 教える
-Ce na eurek	あなたは 教えない
-Ce na cek Miscal	あなたは ミシャル ではありません
-*ジェネレス語
->その一
-Iol stori es nomal rumor	彼の 話は 単なる 噂 でした。
-Me ielook skel everidei	私は 毎日 空を 観察 している。
-Conpan mūv we new place nexmons	会社が 来月 新しい 場所に 移転 する。
-Me ju mék new friend opor	私は 新しい 友達を 作る 機会が ほしい です。
-Nīche measer meas la aguärōd'z yūzamount	この メーターは 水道の 使用量を 測ります。
-Eldei topic es wedā	今日の 話題は 天気 です。
-Iol brāk lomans so iol es pein hāt so iol eat agules-snack wez friend	彼女は 初めての 失恋で 心が 痛くて 友達 と 一緒に アイスクリームを 食べた。
-Mj.Yamada swātze car me	山田さんは 車で 私を 轢いた。
-Sän apear ien est skai ata moning	朝に なると 太陽が 東の空に 現れる。
-Me swātze car me getaron	親友を 車で 轢く。
-Nīche fotas es méked wey nilon	この 靴下は ナイロンで 作られて います。
-Me eat appl if your eat orensta	もし あなたが オレンジを 食べる なら 私は りんごを 食べる。
-Mez fait elsenoin	私たちは 病気と 戦います。
-Me xonsv go we la stēsyon de me hav boze maleta	私は 重い スーツケースを 持って 駅まで 歩くのが とても 大変だった。
-Waz your colfēno go we Tōkyo?	なぜ あなたは 東京に 行く のですか？
-Con ielook bertefl Cresent Moon	夜空に 美しい 三日月が 見える。
-Me colfēno go we la mōl	私は モールに 行く つもりです。
-Nīche stik es 10cm	この 棒は 10 cm です。
-Mam yonic foston we la medel we kof konbi janat child	母は 転んで 膝を 擦りむいた 子供の 傷口を 優しく 薬で 拭いてあげた。
-Const la new scol	新しい 学校を 建設します。
-Nīche appl es eliom	この リンゴ は 小さい。
-Nīche es tonot la pen	これは ペン ではありません。
-Es nīche la pen?	これ は ペン ですか？
-Nīche es la pen	これ は ペン です。
-Me drinkä la café	私は コーヒーを 飲む。
-Mez conpan es eliom but olla-mion fojion so gōd work	私たちの 会社は 小さな組織 ですが みんなで 協力して 良い 仕事を しています。
 *イスクイル3
 >挨拶と例文
 Uiphawâtļûxe’ň?	それは 象徴的な 大きな 木立 なのでしょうか?
@@ -205,7 +286,9 @@ Ti glalač	私は 元気だ
 Ki attàwîl	あなたに 挨拶を
 Attál	こんちは
 Attàwîl	こんにちは
-Attàlûk	さよなら
+Attàlûk	さよなら
+
 Ükhu ettál	歓迎します`
+
 
 

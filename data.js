@@ -128,8 +128,8 @@ stēk	ステーキ
 zes	それ
 menu	メニュー
 welcém	ようこそ
-Hó	mänee	いくつ
-Hó	dinero	いくら
+Hó mänee	いくつ
+Hó dinero	いくら
 Mez	私たち
 Your	あなた
 Iol	彼
@@ -196,6 +196,7 @@ Taniredi	こんにちは
 мна исьма̄	私の 名前
 мадла опрӣша	ありがとう
 зарно ден	ごめんなさい`
+
 
 
 

@@ -358,6 +358,8 @@ phase="course";
     document.getElementById("img").style.display="none";
   document.getElementById("answerBox").style.minHeight="10px";
     btn.textContent = c.name + " (" + cleared + "/2)";
+    if (langs[state.lang] != "諸言語"){
+      //諸言語はコースクリア関係なくできます
     if (locked) {
       btn.classList.add("locked");
       btn.textContent = "🔒 " + btn.textContent;
@@ -365,7 +367,7 @@ phase="course";
     } else {
       btn.onclick = () => selectCourse(i);
     }
-
+    }
     area.appendChild(btn);
   sizeChange()
   });

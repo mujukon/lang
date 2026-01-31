@@ -166,6 +166,7 @@ Me mék fotas	私は 靴下を 作る
 Iol grated la dan scol after work in iedoltawn bank	彼女は 大学を 卒業 してから 地元の 銀行で 仕事に就いている
 Con ielook bertefl Cresent Moon	美しい 三日月が 見える
 *ヒューシェア
+ヒューシェア語は架空世界「Novalux」で使用されている、印欧語族に属するアポステリオリ人工言語です。膠着語的な格変化と、ヨーロッパらしい豊富な屈折体系を両立させた文法が特徴です。
 >初級
 Aks zi Iwan	私は ユワン です
 Aks zi ain beit	私は 人 です
@@ -177,6 +178,7 @@ Mai irwef fist Miscal	私の 名前は ミシャル です
 Ce eurek	あなたは 教える
 Ce na eurek	あなたは 教えない
 Ce na cek Miscal	あなたは ミシャル ではありません`
+
 
 
 

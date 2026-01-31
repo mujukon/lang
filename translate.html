@@ -354,6 +354,11 @@ phase="course";
     document.getElementById("question").innerHTML =
     "【" + langs[state.lang] + "】<br>" +
     langDescriptions[state.lang].replace(/\n/g, "<br>");
+    if (screen.width>screen.height){
+      document.getElementById("question").style.fontSize="20px";
+    }else{
+      document.getElementById("question").style.fontSize="40px";
+    }
     document.getElementById("img").style.display="none";
   document.getElementById("answerBox").style.minHeight="10px";
     btn.textContent = c.name + " (" + cleared + "/2)";
@@ -449,10 +454,10 @@ function sizeChange(){
   });
   document.getElementById("result").style.fontSize = size;
   }else{
-var size = "60px"
+var size = "68px"
  document.getElementById("question").style.fontSize = size; document.getElementById("answerBox").style.fontSize = size;
 document.getElementById("wordButtons").style.fontSize = size;  document.getElementById("center").style.top="50%";
-  document.querySelectorAll('button').forEach(btn => {btn.style.fontSize= size; btn.style.margin= "15px"; });
+  document.querySelectorAll('button').forEach(btn => {btn.style.fontSize= size; btn.style.margin= "20px"; });
   document.getElementById("result").style.fontSize = size;
   }
   

@@ -354,11 +354,6 @@ phase="course";
     document.getElementById("question").innerHTML =
     "【" + langs[state.lang] + "】<br>" +
     langDescriptions[state.lang].replace(/\n/g, "<br>");
-    if (screen.width>screen.height){
-      document.getElementById("question").style.fontSize="20px";
-    }else{
-      document.getElementById("question").style.fontSize="40px";
-    }
     document.getElementById("img").style.display="none";
   document.getElementById("answerBox").style.minHeight="10px";
     btn.textContent = c.name + " (" + cleared + "/2)";
@@ -460,17 +455,20 @@ document.getElementById("wordButtons").style.fontSize = size;  document.getEleme
   document.querySelectorAll('button').forEach(btn => {btn.style.fontSize= size; btn.style.margin= "20px"; });
   document.getElementById("result").style.fontSize = size;
   }
-  
   if (screen.height < 500 || screen.width>screen.height){
    document.getElementById("img").style.transform= "scale(1)";
    document.getElementById("img").style.margin= "0px";
-  
   }else{
     document.getElementById("img").style.transform= "scale(1.75)";
    document.getElementById("img").style.margin= "50px";
-  
   }
-  
+  if (phase === "course"){
+    if (screen.width>screen.height){
+      document.getElementById("question").style.fontSize="20px";
+    }else{
+      document.getElementById("question").style.fontSize="40px";
+    }
+  }
 }
   
 window.addEventListener("resize", sizeChange);

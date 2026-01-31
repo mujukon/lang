@@ -77,9 +77,9 @@ button {
 let phase="lang";
 const langs = [];
 const coursesByLang = [];
+const langDescriptions = [];
 let currentLang = -1;
 let currentCourse = -1;
-
 sentenceText.split("\n").forEach(line => {
   line = line.trim();
   if (!line) return;
@@ -87,6 +87,7 @@ sentenceText.split("\n").forEach(line => {
   if (line.startsWith("*")) {
     langs.push(line.slice(1).trim());
     coursesByLang.push([]);
+    langDescriptions.push(""); // ★追加
     currentLang++;
     currentCourse = -1;
     return;
@@ -101,7 +102,12 @@ sentenceText.split("\n").forEach(line => {
     return;
   }
 
-  coursesByLang[currentLang][currentCourse].sentences.push(line);
+  // ★コースがまだ始まっていなければ「言語説明」
+  if (currentCourse === -1) {
+    langDescriptions[currentLang] += line + "\n";
+  } else {
+    coursesByLang[currentLang][currentCourse].sentences.push(line);
+  }
 });
 
 /* =========================
@@ -344,7 +350,11 @@ phase="course";
     const btn = document.createElement("button");
     const cleared = getClearCount(state.lang, i);
     const locked = i > 0 && getClearCount(state.lang, i-1) < 2;
-
+    document.getElementById("question").innerHTML =
+    "【" + langs[state.lang] + "】<br>" +
+    langDescriptions[state.lang].replace(/\n/g, "<br>");
+    document.getElementById("img").style.display="none";
+  document.getElementById("answerBox").style.minHeight="10px";
     btn.textContent = c.name + " (" + cleared + "/2)";
     if (locked) {
       btn.classList.add("locked");
@@ -370,6 +380,8 @@ function selectLanguage(idx) {
 function selectCourse(idx) {
   state.course = idx;
   document.getElementById("courseSelect").style.display = "none";
+  document.getElementById("img").style.display="inline";
+  document.getElementById("answerBox").style.minHeight="100px";
   buildWordPool();
   startCourse();
 }

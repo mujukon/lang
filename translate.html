@@ -252,6 +252,7 @@ while (words.length < Math.min(pool.length, 12)) {
   });
 
   document.getElementById("img").src = "pic/" + Math.floor(Math.random()*7) + ".gif";
+  document.getElementById("img").style.display="inline";
   sizeChange()
 }
 
@@ -399,7 +400,7 @@ document.getElementById("backLangBtn").onclick = () => {
   document.getElementById("progress").style.display = "none";
   document.getElementById("question").textContent = "";
   document.getElementById("wordButtons").innerHTML = "";
-
+  document.getElementById("img").style.display="inline";
   if (phase === "quiz") {
     // クイズ中ならコース選択画面に戻す
     phase = "course";
@@ -464,9 +465,9 @@ document.getElementById("wordButtons").style.fontSize = size;  document.getEleme
   }
   if (phase === "course"){
     if (screen.width>screen.height){
-      document.getElementById("question").style.fontSize="20px";
+      document.getElementById("question").style.fontSize="25px";
     }else{
-      document.getElementById("question").style.fontSize="40px";
+      document.getElementById("question").style.fontSize="45px";
     }
   }
 }

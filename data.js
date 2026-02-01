@@ -267,7 +267,7 @@ is øler ō mil?	あなたは この魚を 食べますか
 caf es øler ō mil	私は この 魚を 食べられる
 caf is act ē mil	あなたは この魚を 持てる
 is døbo ō car?	あなたは この人を 知っているのですか
-a car act　あの 人が 持っている
+a car act	あの 人が 持っている
 a car act sfina milan	あの人は 沢山の 魚を 持っている
 a car caf pos ō xatt	あの人は この 言語を 話せます
 et, caf is act ō milan	えっと あなたは この魚を 持てるのですか
@@ -298,5 +298,6 @@ ne, es ne øler milan	いいえ 私は 魚を食べない
 мна исьма̄	私の 名前
 мадла опрӣша	ありがとう
 зарно ден	ごめんなさい`
+
 
 

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>音韻統計計算</title>
+<style>
+body{
+  font-family:sans-serif;
+  margin:20px;
+}
+
+textarea,input,.result{
+  width:100%;
+  box-sizing:border-box;
+}
+
+textarea{
+  height:6em;
+}
+
+.result{
+  white-space:pre-wrap;
+  border:1px solid #ccc;
+  padding:1em;
+}
+</style>
+</head>
+<body>
+
+<label>文章</label>
+<textarea id="text"></textarea>
+
+<label>母音字リスト</label>
+<input type="text" id="vowels" value="aeiouëêâáàûúôîüöéəūāīäø">
+
+<div class="result" id="output"></div>
+
+<script>
+function tcount(str, pattern){
+  let re = new RegExp(pattern, "g");
+  let m = str.match(re);
+  return m ? m.length : 0;
+}
+function compute(){
+
+  let text = document.getElementById("text").value;
+  let vowels = document.getElementById("vowels").value;
+
+  // ===== B3 =====
+  let B3 = "/" + text.toLowerCase() + " ";
+  B3 = B3.replace(/[\s.,!?\-\(\);:]+/g,"/");
+// ===== D3 単語数 =====
+let D3 = B3.length - B3.replace(/\//g,"").length - 1;
+if(D3 < 0) D3 = 0;
+
+// ===== B5 =====
+let B5 = B3.substring(0, B3.length-1)
+             .replace(new RegExp("["+vowels+"]","g"),"0")
+             .replace(/[^0\/]/g,"1");
+
+// ===== B6 =====
+// =len(regexreplace(B5,"\/11","/2"))
+//  -len(substitute(regexreplace(B5,"\/11","/2"),"2",""))
+let tmpB6 = B5.replace(/\/11/g,"/2");
+let B6 = tmpB6.length - tmpB6.replace(/2/g,"").length;
+
+// ===== B7 =====
+// =TCOUNT(regexreplace(B3,"\/s[^aeiuo/][rlh]","/3"),3)
+let tmpB7 = B3.replace(/\/s[^aeiuo\/][rlh]/g,"/3");
+let B7 = (tmpB7.match(/3/g)||[]).length;
+
+// ===== B8 =====
+// =TCOUNT(B5,"1")/(len(B5)-(D3-1))
+let totalLetters = B5.length - (D3-1);
+let B8 = totalLetters>0
+  ? (B5.split("1").length-1)/totalLetters
+  : 0;
+  
+  let alpha = D3>0
+  ? ((B3.length - D3)/D3 - 1)
+  : 0;
+
+let beta = D3>0
+  ? (B6/D3*100)
+  : 0;
+
+let gamma = D3>0
+  ? ((B6-B7)/D3*100)
+  : 0;
+
+let delta = B8*100;
+
+let epsilon = B8;
+
+  // ===== 子音列 =====
+  let B9 = ("/"+B5+"/").replace(/[^1]+/g,"//");
+
+  let clusterCounts = [];
+  for(let i=1;i<=6;i++){
+    let re = new RegExp("/"+"1".repeat(i)+"/","g");
+    clusterCounts[i] = (B9.match(re)||[]).length;
+  }
+
+  let maxFreq = 1;
+  let maxVal = clusterCounts[1]||0;
+  for(let i=2;i<=6;i++){
+    if(clusterCounts[i] > maxVal){
+      maxVal = clusterCounts[i];
+      maxFreq = i;
+    }
+  }
+
+  // ===== E0 =====
+  let E0 = 0;
+  if(D3>0){
+    E0 = 100/2*(1+1/(1+Math.exp(0.5*alpha-7)))/
+      (1+Math.exp(-2.26*alpha-0.0693*beta+0.0112*gamma+0.388*delta-11.9));
+  }
+
+  let E = maxFreq===2
+    ? (-0.04*E0*E0+1.4*E0)
+    : E0;
+
+  document.getElementById("output").innerText =
+`E₀: ${E0}
+E(ver1.2): ${E}
+単語数: ${D3}
+
+α: ${alpha}
+β: ${beta}
+γ: ${gamma}
+δ: ${delta}
+ε: ${epsilon}
+
+子音列長分布:
+1: ${clusterCounts[1]||0}
+2: ${clusterCounts[2]||0}
+3: ${clusterCounts[3]||0}
+4: ${clusterCounts[4]||0}
+5: ${clusterCounts[5]||0}
+6: ${clusterCounts[6]||0}
+
+最頻子音列長: ${maxFreq}
+`;
+}
+
+document.getElementById("text").addEventListener("input",compute);
+document.getElementById("vowels").addEventListener("input",compute);
+
+
+compute();
+function adjustFontSize(){
+
+  let size;
+
+  if(screen.width <= 600){
+    size = 40;   // スマホ
+  }else{
+    size = 20;   // PC
+  }
+
+  document.body.style.fontSize = size + "px";
+
+  document.querySelectorAll("textarea,input,.result")
+    .forEach(el=>{
+      el.style.fontSize = size + "px";
+    });
+}
+
+window.addEventListener("resize", adjustFontSize);
+adjustFontSize();
+</script>
+
+</body>
+</html>

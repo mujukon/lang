@@ -122,16 +122,13 @@ let epsilon = B8;
     : E0;
 
   document.getElementById("output").innerText =
-`E₀: ${E0}
-E(ver1.2): ${E}
+`E(ver1.2): ${E}
 単語数: ${D3}
-
 α: ${alpha}
 β: ${beta}
 γ: ${gamma}
 δ: ${delta}
 ε: ${epsilon}
-
 子音列長分布:
 1: ${clusterCounts[1]||0}
 2: ${clusterCounts[2]||0}
@@ -139,8 +136,8 @@ E(ver1.2): ${E}
 4: ${clusterCounts[4]||0}
 5: ${clusterCounts[5]||0}
 6: ${clusterCounts[6]||0}
-
 最頻子音列長: ${maxFreq}
+E₀: ${E0}
 `;
 }
 
@@ -172,4 +169,5 @@ adjustFontSize();
 </script>
 
 </body>
+
 </html>

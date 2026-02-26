@@ -210,81 +210,6 @@ Mai irwef fist Miscal	私の 名前は ミシャル です
 Ce eurek	あなたは 教える
 Ce na eurek	あなたは 教えない
 Ce na cek Miscal	あなたは ミシャル ではありません
-*ニールス語
-未対応
->コース1
-Taniredi	こんにちは
-*ヴィルカ
-アジルト作
-カース語から派生し、ユクル語の影響を受けた言語。人のいなくなった地球で、コンクリートの上に寂しく書かれている。
->入門
-opōs	はじめまして
-vēla	こんにちは
-act boid	おはよう
-act vica	おやすみ
-es notolna	私は ノトルナ です
-es lova milan	私は 魚が 好きです
-mil	魚
-le	私
-ø̄s is?	あなたは どうですか？
-ita	あなた
-hve is mam?	あなたの 名前は なんですか
-es mam lisvona	私の 名前は リスヴォナです
->カフェで注文する・単語
-zøs	頼む、欲する
-ōs	彼
-egas	牛乳
-øta	〜したことがある
-poll	砂糖
-sfina	多くの
-agt	不定冠詞-定冠詞
-avr	2
-iv	3
-egas culxa	カフェオレ
-anst	ください
->カフェで注文する
-es zøs agt culxa	私は コーヒーが 欲しい
-øta ōs zøs sfina poll	彼は 多くの 砂糖を 頼んだ ことがある
-hve is zøs?	何を 頼みますか
-es zøs agt sfina egas culxa nu	私は 多くの 砂糖が 入った コーヒーが 飲みたい
-es zøs avr culxa, u agt egas culxa	コーヒー 2つ と カフェオレ 1つを 頼みます
-iv egas, u iv culxa anst	3つの 牛乳と 3つの コーヒーを ください
->動詞を使う・単語
-act	持つ
-øler	食べる
-pos	話す
-døbo	知る
-caf	できる
-ē	それ、その
-ō	これ、この
-car	人
-a	あれ、あの
-et	はい、えっと
->動詞を使う
-is døbo le?	あなたは 私を 知っていますか
-es pos ō xatt	私は この 言語を 話します
-is pos ō xatt?	あなたは この 言語を 話しますか
-is øler ō mil?	あなたは この魚を 食べますか
-caf es øler ō mil	私は この 魚を 食べられる
-caf is act ē mil	あなたは この魚を 持てる
-is døbo ō car?	あなたは この人を 知っているのですか
-a car act	あの人は 持っている
-a car act sfina milan	あの人は 沢山の 魚を 持っている
-a car caf pos ō xatt	あの人は この 言語を 話せます
-et, caf is act ō milan	えっと あなたは この魚を 持てるのですか
->簡単な受け答え
-et	はい
-ne	いいえ
-alt	行く
-es ne døbo ē xatt	私は その言語を 知らない
-et, caf es pos ō xatt	はい 私は この 言語を 話せる
-ne, ne actes sfina milan	いいえ そんなに 多くの 魚は 持っていない
-zøs is døbo ō?	あなたは これを 知りたいですか
-et, zøs altes	はい 行きたいです
-zøs altis ō?	これに 行きたいですか
-ne, ne actes ē mil	いいえ その 魚は 触れない
-ne, zøs øleres milan	いいえ 私は 魚が 食べたい
-ne, es ne øler milan	いいえ 私は 魚を食べない
 *諸言語
 みんなから集めた人工言語
 是非学ぼう
@@ -298,7 +223,63 @@ ne, es ne øler milan	いいえ 私は 魚を食べない
 дин Анто̄н	あなたは アントン です
 мна исьма̄	私の 名前
 мадла опрӣша	ありがとう
-зарно ден	ごめんなさい`
+зарно ден	ごめんなさい
+>ヴィルカ1
+opōs	はじめまして
+vēla	こんにちは
+act boid	おはよう
+act vica	おやすみ
+es notolna	私は ノトルナ です
+es lova milan	私は 魚が 好きです
+mil	魚
+le	私
+ø̄s is?	あなたは どうですか？
+ita	あなた
+hve is mam?	あなたの 名前は なんですか
+es mam lisvona	私の 名前は リスヴォナです
+>ヴィルカ2
+zøs	頼む、欲する
+ōs	彼
+egas	牛乳
+øta	〜したことがある
+poll	砂糖
+sfina	多くの
+agt	不定冠詞-定冠詞
+avr	2
+iv	3
+egas culxa	カフェオレ
+anst	ください
+>ヴィルカ2-2
+es zøs agt culxa	私は コーヒーが 欲しい
+øta ōs zøs sfina poll	彼は 多くの 砂糖を 頼んだ ことがある
+hve is zøs?	何を 頼みますか
+es zøs agt sfina egas culxa nu	私は 多くの 砂糖が 入った コーヒーが 飲みたい
+es zøs avr culxa, u agt egas culxa	コーヒー 2つ と カフェオレ 1つを 頼みます
+iv egas, u iv culxa anst	3つの 牛乳と 3つの コーヒーを ください
+>ヴィルカ3
+act	持つ
+øler	食べる
+pos	話す
+døbo	知る
+caf	できる
+ē	それ、その
+ō	これ、この
+car	人
+a	あれ、あの
+et	はい、えっと
+et	はい
+ne	いいえ
+alt	行く
+es ne døbo ē xatt	私は その言語を 知らない
+et, caf es pos ō xatt	はい 私は この 言語を 話せる
+ne, ne actes sfina milan	いいえ そんなに 多くの 魚は 持っていない
+zøs is døbo ō?	あなたは これを 知りたいですか
+et, zøs altes	はい 行きたいです
+zøs altis ō?	これに 行きたいですか
+ne, ne actes ē mil	いいえ その 魚は 触れない
+ne, zøs øleres milan	いいえ 私は 魚が 食べたい
+ne, es ne øler milan	いいえ 私は 魚を食べない`
+
 
 
 

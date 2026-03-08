@@ -49,7 +49,7 @@ bu nima?	これは 何ですか
 ular yaponlar	彼らは 日本人です
 biz yaxshimiz	私達は 元気です
 siz yaxshimisiz?	あなたたちは 元気ですか
->存在,所有,親族名称
+>存在,所有,親族名-単語
 bor	ある/いる
 yoʻq	ない/いない
 aka	兄
@@ -66,7 +66,8 @@ va	～と
 -da	処格語尾
 〇da □ bor	〇には □が ある/いる
 〇da □ yoʻq	〇には □が ない/いない
->menda aka ham bor	私には 兄も います
+>存在,所有,親族名称
+menda aka ham bor	私には 兄も います
 menda opa ham bor	私には 姉も います
 menda uka yoʻq	私には 弟が いません
 senda singil bormi?	君には 妹が いますか

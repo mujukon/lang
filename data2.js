@@ -1,4 +1,195 @@
-var sentenceText = `*ハワイ語機能語
+var sentenceText = `*ウズベク語文法コース
+テュルク語族に属する膠着語。ウズベキスタンの言語
+【文法】
+sov、前置修飾、対格型、膠着語
+【動詞スロット】
+語根-（態）-（否定）-時制-人称語尾
+>挨拶
+assalomu alaykum	こんにちは(話しかける)
+va alaykum assalom	こんにちは(返答)
+salom	やあ
+yaxshimisiz?	お元気ですか
+xayr	さようなら
+rahmat	ありがとう
+iltimos	お願いします
+kechirasiz	すみません
+ha	はい
+yoʻq	いいえ
+zoʻr	大変良い
+xursand	うれしい
+>代名詞-単語
+men	私
+biz	私たち
+sen	君
+siz	あなた/あなたたち
+u	彼／彼女
+u	それ
+bu	これ
+ular	彼等
+yapon	日本人
+xitoy	中国人
+oʻzbek	ウズベク人
+kim	誰
+nima	何
+yaxshi	良い／元気
+-lar	複数形接尾辞
+-man	一人称単数語尾
+-san	二人称単数語尾
+-miz	一人称複数語尾
+-siz	二人称複数語尾
+-mi	疑問語尾
+>代名詞
+men yaponman	私は 日本人です
+biz xitoymiz	私たちは 中国人です
+sen oʻzbekmisan?	君は ウズベク人ですか
+siz oʻzbek­siz	あなたたちは ウズベク人です
+u kim?	彼は 誰ですか
+bu yaxshi	それは 良いです
+bu nima?	これは 何ですか
+ular yaponlar	彼らは 日本人です
+biz yaxshimiz	私達は 元気です
+siz yaxshimisiz?	あなたたちは 元気ですか
+>存在,所有,親族名称
+bor	ある/いる
+yoʻq	ない/いない
+aka	兄
+uka	弟
+opa	姉
+singil	妹
+ota	父
+ona	母
+oʻgʻil	息子
+qiz	娘
+oila	家族
+ham	〜も
+va	～と
+-da	処格語尾
+〇da □ bor	〇には □が ある/いる
+〇da □ yoʻq	〇には □が ない/いない
+>menda aka ham bor	私には 兄も います
+menda opa ham bor	私には 姉も います
+menda uka yoʻq	私には 弟が いません
+senda singil bormi?	君には 妹が いますか
+unda oila bor	彼には 家族が います
+unda oʻgʻil bor	彼には 息子が います
+unda qiz ham bor	彼には 娘も います
+bizda ota va ona bor	私たちには 父と 母が います
+sizda aka bormi?	あなたには 兄が いますか
+ularning oilasi bor	彼らには 家族が います
+>起点、否定-単語
+oʻqituvchi	先生
+talaba	学生
+shifokor	医師
+muhandis	技師
+tarjimon	通訳
+ishchi	労働者
+yapon	日本人
+xitoy	中国人
+koreys	韓国人
+oʻzbek	ウズベク人
+-dan	～から
+emas	～ではない
+>起点・否定
+men talaba emasman	私は 学生 ではない
+u shifokor emas	彼は 医者 ではない
+sen oʻqituvchi emassan	君は 先生 ではない
+biz ishchi emasmiz	私たちは 労働者 ではない
+siz talaba emassiz	あなたは 学生 ではない
+men Yaponiyadanman	私は 日本から 来ました
+u Xitoydan	彼は 中国からです
+biz Koreyadanmiz	私たちは 韓国からです
+sen Oʻzbekistondanmisan?	君は ウズベキスタンから ですか
+ular Yaponiyadan emas	彼らは 日本から ではない
+>単語&文法復習①
+men	私
+biz	私たち
+sen	君
+siz	あなた／あなたたち
+u	彼／彼女／それ
+ular	彼ら
+bu	これ
+kim	誰
+nima	何
+yaxshi	良い／元気
+aka	兄
+opa	姉
+uka	弟
+singil	妹
+ota	父
+ona	母
+oila	家族
+bor	ある／いる
+yoʻq	ない／いない
+ham	〜も
+va	〜と
+-da	〜に／〜で
+-dan	〜から
+emas	〜ではない
+-mi	疑問語尾
+>単語&文法復習①
+men yaponman	私は 日本人です
+biz xitoymiz	私たちは 中国人です
+sen oʻzbekmisan?	君は ウズベク人ですか
+u kim?	彼は 誰ですか
+bu nima?	これは 何ですか
+biz yaxshimiz	私たちは 元気です
+menda aka ham bor	私には 兄も います
+bizda ota va ona bor	私たちには 父と 母が います
+men talaba emasman	私は 学生ではありません
+sen Oʻzbekistondanmisan?	君は ウズベキスタンから ですか
+>追加単語①
+olma	りんご
+sabzavot	野菜
+kartoshka	じゃがいも
+tuxum	卵
+goʻsht	肉
+meva	果物
+sut	牛乳
+suv	水
+kofe	コーヒー
+doʻkon	店
+non	パン
+guruch	米
+shakar	砂糖
+tuz	塩
+choy	お茶
+piyoz	玉ねぎ
+sabzi	にんじん
+pomidor	トマト
+bodring	きゅうり
+bozor	市場
+ichimlik	飲み物
+>追加単語①例文
+bu doʻkon	これは 店です
+bu olma va meva	これは りんご と 果物
+bu sabzavot	これは 野菜
+kartoshka, piyoz, sabzi va pomidor sabzavotlar	じゃがいも 玉ねぎ にんじん と トマトは 野菜
+sut, suv, kofe va choy ichimliklar	牛乳 水 コーヒー と お茶は 飲み物
+>現在形-単語
+-man	一人称単数語尾
+-san	二人称単数語尾
+-miz	一人称複数語尾
+-siz	二人称複数語尾
+-di/ti	動詞三人称単数語尾
+-dilar	動詞三人称複数語尾
+-(a)yap-	現在進行形語尾
+oʻzbek tili	ウズベク語
+shashlik	シャシリク
+uy	家
+maktab	学校
+uxla-	寝る
+oʻrgan-	勉強する
+ye-	食べる
+gaplash-	話す
+>現在形
+men oʻzbek tilini oʻrganayapman	私は ウズベク語を 勉強しています
+siz yuryapsiz	あなたたちは 歩いています
+sen shashlik-ni yeyapsanmi?	君は シャシリクを 食べていますか
+biz gaplashyapmiz	私達は 話しています
+u yuryapti	彼は 歩いています
+yusuf uyda uxlayapti	ユースフは 家で 寝ています
+yusuf maktabda oʻrganayapti	ユースフは 学校で 勉強しています
+*ハワイ語機能語
 >代名詞  
 au	私
 ʻoe	あなた

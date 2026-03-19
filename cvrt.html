@@ -36,10 +36,6 @@ function parseLine(line) {
     .split(/[,\u3001\/|]/) // , 、 / |
     .map(s => s.trim())
     .filter(s => s);
-    let meanings = parts[1]
-    .split(/[,\u3001\/|]/) // , 、 / |
-    .map(s => s.trim())
-    .filter(s => s);
     let tags = parts[2]
     ? parts[2]
         .split(/[,\u3001\/|]/) // , 、 / |

@@ -32,9 +32,20 @@ function parseLine(line) {
     if (parts.length < 2) return null;
 
     let form = parts[0];
-    let meanings = parts[1].split(",").map(s => s.trim());
-    let tags = parts[2] ? parts[2].split(",").map(s => s.trim()) : [];
-
+    let meanings = parts[1]
+    .split(/[,\u3001\/|]/) // , 、 / |
+    .map(s => s.trim())
+    .filter(s => s);
+    let meanings = parts[1]
+    .split(/[,\u3001\/|]/) // , 、 / |
+    .map(s => s.trim())
+    .filter(s => s);
+    let tags = parts[2]
+    ? parts[2]
+        .split(/[,\u3001\/|]/) // , 、 / |
+        .map(s => s.trim())
+        .filter(s => s)
+    : [];
     return { form, meanings, tags };
 }
 

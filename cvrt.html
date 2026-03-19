@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>辞書整形ツール</title>
+<style>
+body { font-family: sans-serif; margin: 20px; }
+textarea { width: 100%; height: 150px; margin-bottom: 10px; }
+#output { height: 200px; background: #f5f5f5; }
+button { padding: 8px 16px; }
+</style>
+</head>
+<body>
+
+<h3>出力（テキストエリア0・編集不可）</h3>
+<textarea id="output" readonly></textarea>
+<button onclick="copyOutput()">コピー</button>
+
+<h3>元データ（テキストエリア1）</h3>
+<textarea id="input1"></textarea>
+
+<h3>追加単語（テキストエリア2）</h3>
+<textarea id="input2" placeholder="dish	皿,料理	d始まり"></textarea>
+
+<button onclick="process()">変換＆挿入</button>
+
+<script>
+function parseLine(line) {
+    // タブ or コロン区切り
+    let parts = line.split(/\t|:|：/).map(s => s.trim()).filter(s => s);
+    if (parts.length < 2) return null;
+
+    let form = parts[0];
+    let meanings = parts[1].split(",").map(s => s.trim());
+    let tags = parts[2] ? [parts[2]] : [];
+
+    return { form, meanings, tags };
+}
+
+function process() {
+    let baseText = document.getElementById("input1").value;
+    let addText = document.getElementById("input2").value;
+
+    let data;
+    try {
+        data = JSON.parse(baseText);
+    } catch (e) {
+        alert("JSONが不正ちゃと");
+        return;
+    }
+
+    let words = data.words || [];
+    let maxId = words.length > 0 ? Math.max(...words.map(w => w.entry.id)) : 0;
+
+    let lines = addText.split("\n").map(l => l.trim()).filter(l => l);
+
+    let newWords = [];
+
+    for (let line of lines) {
+        let parsed = parseLine(line);
+        if (!parsed) continue;
+
+        maxId++;
+
+        let obj = {
+            entry: { id: maxId, form: parsed.form },
+            tags: parsed.tags,
+            translations: [{
+                title: "名詞",
+                forms: parsed.meanings,
+                rawForms: parsed.meanings.join(",")
+            }],
+            contents: [{
+                title: "発音",
+                text: ""
+            }],
+            variations: [],
+            relations: []
+        };
+
+        newWords.push(obj);
+    }
+
+    // 先頭に追加
+    data.words = [...newWords, ...words];
+
+    document.getElementById("output").value =
+        JSON.stringify(data, null, 2);
+}
+
+function copyOutput() {
+    let textarea = document.getElementById("output");
+    textarea.select();
+    document.execCommand("copy");
+    alert("コピーしたちゃと");
+}
+</script>
+
+</body>
+</html>

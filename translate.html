@@ -190,7 +190,7 @@ function loadQuestion() {
   }
   progress();
   const line = questionQueue[0];
-  const [lang, jpRaw] = line.split(":");
+  const [lang, jpRaw] = line.split(/[\t :]+/);
   const jps = jpRaw.split("/");
 
   let mode = "jp2lang"

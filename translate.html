@@ -152,7 +152,7 @@ function buildWordPool() {
   const sentences = coursesByLang[state.lang][state.course].sentences;
 
   sentences.forEach(line => {
-    const [lang, jpRaw] = line.split("\t");
+    const [lang, jpRaw] = line.split(/[\t :]+/);
     const jps = jpRaw.split("/");
 
     lang.split(" ").forEach(w => setLang.add(w));

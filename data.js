@@ -210,6 +210,120 @@ Mai irwef fist Miscal	私の 名前は ミシャル です
 Ce eurek	あなたは 教える
 Ce na eurek	あなたは 教えない
 Ce na cek Miscal	あなたは ミシャル ではありません
+*クノクテ
+>自己紹介-格標識と品詞標識を覚える(単語)  
+-s(品詞標識):人称代名詞
+-ŝ(品詞標識):指示代名詞
+-l(品詞標識):普通名詞
+-f(品詞標識):抽象名詞
+-r(品詞標識):自動詞
+-n(品詞標識):他動詞
+-v(品詞標識):形容詞
+-ĵ(品詞標識):数詞
+-n(格標識):主格
+-l(格標識):対格
+-f(格標識):与格
+-ĥ(格標識):向格
+-ŝ(格標識):処格・時格
+su:己(形態素)
+fe:あなた(形態素)
+de:彼(形態素)
+sus:私
+fes:あなた
+des:彼・彼女
+wa:複数(形態素)
+wasus:私たち
+wafes:あなたたち
+wades:彼ら
+zgouĥ:か/ますか(疑問)
+jnoun:好みます
+pnkenar:住んでいます
+wjlpor:生まれます
+japlikol:リンゴ
+saveluz:サヴェル(人名)
+zorkaĥkez:ゾルカハケ(人名)
+her:である
+-m(相・時制標識):した(過去)
+tojamazǧ:富山
+zasteicozǧ:アメリカ
+ken:作ります
+>自己紹介-格標識と品詞標識を覚える(文章)  
+susn:私は
+fesn:あなたは
+desn:彼は
+susn saveluzn her:私は サヴェル です
+desn saveluzn her:彼は サヴェル です
+desn zorkaĥkezn her:彼は ゾルカハケ です
+desn aazorkaĥkezn her aazgouĥ:彼は ゾルカハケ です か
+fesn japlikoll jnoun:あなたは リンゴを 好みます
+susn japlikoll jnoun:私は リンゴを 好みます
+fesn dekkoezn her:あなたは デカコェ です
+fesn zguĥl jnoun:あなたは 何を 好みます か
+zorkaĥkezn zguĥl jnoun:ゾルカハケは 何を 好みます か
+dekkoezn japlikoll jnoun:デカコェは リンゴを 好みます
+desn tojamazǧŝ wjlporm:彼は 富山で 生まれました
+susn nihonzǧŝ wjlporm:私は 日本で 生まれました
+wasusn zasteicozǧŝ wjlporm:私たちは アメリカで 生まれました
+hjuv:新しい
+ĝkiv:古い
+wpav:美しい
+ǧdiov:醜い
+pweov:綺麗な
+dǧoev:汚い
+ǧransev:使いやすい
+rĥinsev:使いにくい
+suŝ:これ
+feŝ:それ
+deŝ:あれ
+suŝov:この
+feŝov:その
+deŝov:あの
+(任意の長母音)(短母音、非必須)-:係属標識
+vbien:買います
+vpoun:売ります
+jnon:欲します
+jnun:望みます
+jnuj:したい
+couskomcel:ケース(筐体)
+hblhoal:国
+slnumtubrosmol:じゃがいも
+slnumlikpemol:トマト
+gzonuj:しない
+zguĥ:何
+mlusdomstikal:リンゴ
+hmur:です(状態を表す)
+-sn(格標識):共主格
+-sl(格標識):共対格
+ĵĵaĵ:1
+bĵaĵ:2
+cĵaĵ:3
+ĉĵaĵ:4
+dĵaĵ:5
+ĵĵeĵ:6
+fĵaĵ:7
+gĵaĵ:8
+ĝĵaĵ:9
+hĵaĵ:10
+qĵoĵ:0
+>市場で買い物-形容詞を覚えて、係属標識を使う(文章)  
+susn deŝl jnon:私は あれを 欲します
+susn feŝl vbien jnuj:私は それを 買いたいです
+susn aafesn aarĥinsev aacouskomcell aavbien aagzonuj aal jnun:私は あなたが 使いにくい ケースを 買わない ことを 望みます
+fesn zguĥl jnon:あなたは 何を 欲します か
+hjuv mlusdomstikal:新しい リンゴ
+feŝn ĝkivn hmur:それは 古い です
+deŝov couskomceln ǧransevn hmur:あの ケースは 使いやすい です
+fesn suŝl vbien uujnuj uuzgouĥ:あなたは これを 買いたいです か
+susn oosuŝov oocouskomcelsl oofeŝov ooferolsl oovbien ool jnun:私は この ケースと その 鉄を 買う ことを 望みます
+susn cĵaĵv slnumlikpemoll jnon:私は 3つの トマトを 欲します
+susn aapweov aaĉĵaĵ aajaplikoll vbien jnuj:私は 綺麗な 4つの リンゴを 買いたいです
+wafeŝn iiher iizguĥ:それらは 何ですか
+wasuŝn ǧdiov slnumtubrosmoln her:これらは 醜い ジャガイモ です
+wasuŝn ĝkiv slnumtubrosmoln her:これらは 古い ジャガイモ です
+susn aawasuŝl iinvevĥ aaiiwonf aavpoun:私は これらを 安価に 変更して 売ります
+fesn zguĥl vbienm:あなたは 何を 買いました か
+susn ǧransev hjuv couskomcell vbienm:私は 使いやすい 新しい ケースを 買いました
+susn suŝov hblhoall vbien jnuj:私は この 国を 買いたいです
 *諸言語
 みんなから集めた人工言語
 是非学ぼう
